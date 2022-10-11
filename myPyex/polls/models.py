@@ -1,3 +1,4 @@
+from unittest.util import _MAX_LENGTH
 from django.db import models
 
 # Create your models here.
@@ -7,8 +8,8 @@ class Gimnasio(models.Model):
     nomGym = models.CharField(max_length=50)
     direccionGym =models.CharField(max_length=200)
     telefonoGym = models.CharField(max_length=9)
-    correoGym = models.CharField(max_length=50)
-    fotoGym = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    correoGym = models.EmailField(max_length=50)
+    fotoGym = models.ImageField(height_field=None, width_field=None, max_length=100, upload_to ='uploads/')
 
 class Unidad(models.Model):
     codUn = models.IntegerField(primary_key=True)
@@ -20,7 +21,8 @@ class Curso(models.Model):
     codCur = models.IntegerField(primary_key=True)
     nomCur = models.CharField(max_length=50)
     profesorCur = models.CharField(max_length=50)
-    horarioCur = models.CharField(max_length=50)
+    horarioIniCur = models.TimeField(max_length=50, default='20:00')
+    horarioFinCur = models.TimeField(max_length=50, default='20:00')
     grupoCur = models.CharField(max_length=50)
     gimnasioCur = models.ForeignKey(Gimnasio, on_delete=models.CASCADE)
     descCur = models.CharField(max_length=200)
