@@ -11,6 +11,6 @@
 <p>Foto: {{ object.fotoUs }}</p>
 <p>Pago: {{ object.pagoUs }}</p>
 <p>Apuntado a:
-    {% for curso in object.apuntados %}
+    {% for curso in object.apuntados.all %}
     <td>{{ curso }} </td>
     {% endfor %}</p>
