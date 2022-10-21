@@ -10,3 +10,7 @@
 <p>Sexo: {{ object.sexUs }}</p>
 <p>Foto: {{ object.fotoUs }}</p>
 <p>Pago: {{ object.pagoUs }}</p>
+<p>Apuntado a:
+    {% for curso in object.apuntados %}
+    <td>{{ curso }} </td>
+    {% endfor %}</p>

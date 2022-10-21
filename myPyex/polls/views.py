@@ -8,6 +8,9 @@ from django.views.generic import ListView, DetailView
 from .models import Gimnasio, Usuario, Curso, Unidad
 #Alta, Apuntado
 
+def index(request):
+    return render(request, "polls/index.html")
+
 class GimnasioListView(ListView):
     model = Gimnasio
     queryset = Gimnasio.objects.all()

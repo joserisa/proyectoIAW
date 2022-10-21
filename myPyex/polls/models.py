@@ -10,6 +10,8 @@ class Gimnasio(models.Model):
     telefonoGym = models.CharField(max_length=9)
     correoGym = models.EmailField(max_length=50)
     fotoGym = models.ImageField(height_field=None, width_field=None, max_length=100, upload_to ='uploads/')
+    def __str__(self):
+        return self.nomGym
 
 class Unidad(models.Model):
     codUn = models.IntegerField(primary_key=True)
@@ -18,6 +20,8 @@ class Unidad(models.Model):
     gimnasioUn = models.ForeignKey(Gimnasio, on_delete=models.CASCADE)
     aforoUn = models.IntegerField()
     aforoMaxUn = models.CharField(max_length=2)
+    def __str__(self):
+        return self.nomUn
 
 class Curso(models.Model):
     codCur = models.IntegerField(primary_key=True)
@@ -30,6 +34,8 @@ class Curso(models.Model):
     descCur = models.CharField(max_length=200)
     capCur = models.IntegerField()
     capMaxCur = models.CharField(max_length=2)
+    def __str__(self):
+        return self.nomCur
 
 class Usuario(models.Model):
     idUs = models.IntegerField(primary_key=True)
@@ -45,3 +51,5 @@ class Usuario(models.Model):
     pagoUs = models.BooleanField()
     tarjetaUs = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     apuntados = models.ManyToManyField(Curso)
+    def __str__(self):
+        return self.codUs

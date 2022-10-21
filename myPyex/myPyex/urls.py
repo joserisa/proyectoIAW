@@ -16,15 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from polls import views
-from polls.views import GimnasioListView, CursoListView, UsuarioListView, UnidadListView, GimnasioDetailView, CursoDetailView, UsuarioDetailView, UnidadDetailView
+from polls.views import index, GimnasioListView, CursoListView, UsuarioListView, UnidadListView, GimnasioDetailView, CursoDetailView, UsuarioDetailView, UnidadDetailView
 
 urlpatterns = [
+    path('', index),
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
-    path('gimnasio/', GimnasioListView.as_view()),
-    path('curso/', CursoListView.as_view()),
-    path('usuario/', UsuarioListView.as_view()),
-    path('unidad/', UnidadListView.as_view()),
+    path('gimnasio/', GimnasioListView.as_view(), name='gimnasio'),
+    path('curso/', CursoListView.as_view(), name='curso'),
+    path('usuario/', UsuarioListView.as_view(), name='usuario'),
+    path('unidad/', UnidadListView.as_view(), name='unidad'),
     #path('alta/', AltaListView.as_view()),
     #path('apuntado/', ApuntadoListView.as_view()),
     path('gimnasio/<int:pk>/', GimnasioDetailView.as_view(), name='gimnasio-detail'),
