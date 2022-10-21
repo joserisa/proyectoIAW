@@ -4,6 +4,9 @@
     <h2>Gimnasios</h2>
     <ul>
         {% for gimnasio in gimnasio_list %}
-            <li>{{ gimnasio.nomGym }}</li>
+            <li>
+                <a href={% url 'gimnasio-detail' gimnasio.codGym %}>{{ gimnasio.nomGym }}</a>
+                ({{gimnasio.codGym}})
+            </li>
         {% endfor %}
     </ul>

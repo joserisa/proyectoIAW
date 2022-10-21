@@ -1,6 +1,9 @@
 <h2>Usuario</h2>
     <ul>
         {% for usuario in usuario_list %}
-            <li>{{ usuario.codUs }}</li>
+            <li>
+                <a href={% url 'usuario-detail' usuario.idUs %}>{{ usuario.idUs }}</a>
+                ({{usuario.idUs}})
+            </li>
         {% endfor %}
     </ul>

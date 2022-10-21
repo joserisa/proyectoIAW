@@ -5,7 +5,8 @@ def index(request):
 
 from typing import List
 from django.views.generic import ListView, DetailView
-from .models import Gimnasio, Usuario, Curso, Unidad, Alta, Apuntado
+from .models import Gimnasio, Usuario, Curso, Unidad
+#Alta, Apuntado
 
 class GimnasioListView(ListView):
     model = Gimnasio
@@ -27,7 +28,7 @@ class UnidadListView(ListView):
     queryset = Unidad.objects.all()
     context_object_name = 'unidad_list'
 
-class AltaListView(ListView):
+"""class AltaListView(ListView):
     model = Alta
     queryset = Alta.objects.all()
     context_object_name = 'alta_list'
@@ -36,7 +37,7 @@ class ApuntadoListView(ListView):
     model = Apuntado
     queryset = Apuntado.objects.all()
     context_object_name = 'apuntado_list'
-
+"""
 #-----------------------------------
 class GimnasioDetailView(DetailView):
     model = Gimnasio
@@ -60,7 +61,7 @@ class UnidadDetailView(DetailView):
     context_object_name = 'unidad'
     queryset = Unidad.objects.all()
 
-class AltaDetailView(DetailView):
+"""class AltaDetailView(DetailView):
     model = Alta
     context_object_name = 'alta'
     queryset = Alta.objects.all()
@@ -69,5 +70,5 @@ class ApuntadoDetailView(DetailView):
     model = Apuntado
     context_object_name = 'apuntado'
     queryset = Apuntado.objects.all()
-
+"""
 # Create your views here.

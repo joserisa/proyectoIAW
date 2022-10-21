@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from polls import views
-from polls.views import GimnasioListView, CursoListView, UsuarioListView, UnidadListView, AltaListView, ApuntadoListView, GimnasioDetailView, CursoDetailView, UsuarioDetailView, UnidadDetailView, AltaDetailView, ApuntadoDetailView
+from polls.views import GimnasioListView, CursoListView, UsuarioListView, UnidadListView, GimnasioDetailView, CursoDetailView, UsuarioDetailView, UnidadDetailView
 
 urlpatterns = [
     path('polls/', include('polls.urls')),
@@ -25,13 +25,13 @@ urlpatterns = [
     path('curso/', CursoListView.as_view()),
     path('usuario/', UsuarioListView.as_view()),
     path('unidad/', UnidadListView.as_view()),
-    path('alta/', AltaListView.as_view()),
-    path('apuntado/', ApuntadoListView.as_view()),
+    #path('alta/', AltaListView.as_view()),
+    #path('apuntado/', ApuntadoListView.as_view()),
     path('gimnasio/<int:pk>/', GimnasioDetailView.as_view(), name='gimnasio-detail'),
     path('usuario/<int:pk>/', UsuarioDetailView.as_view(), name='usuario-detail'),
     path('curso/<int:pk>/', CursoDetailView.as_view(), name='curso-detail'),
-    path('apuntado/<int:pk>/', ApuntadoDetailView.as_view(), name='apuntado-detail'),
+    #path('apuntado/<int:pk>/', ApuntadoDetailView.as_view(), name='apuntado-detail'),
     path('unidad/<int:pk>/', UnidadDetailView.as_view(), name='unidad-detail'),
-    path('alta/<int:pk>/', AltaDetailView.as_view(), name='alta-detail'),
+    #path('alta/<int:pk>/', AltaDetailView.as_view(), name='alta-detail'),
 ]
 

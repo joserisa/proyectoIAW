@@ -1,6 +1,8 @@
 <h2>Cursos</h2>
     <ul>
         {% for curso in curso_list %}
-            <li>{{ curso.nomCur }}</li>
+            <li>
+                <a href={% url 'curso-detail' curso.codCur %}>{{ curso.nomCur }}</a>
+            </li>
         {% endfor %}
     </ul>

@@ -16,6 +16,8 @@ class Unidad(models.Model):
     nomUn = models.CharField(max_length=50)
     estadoUn = models.BooleanField()
     gimnasioUn = models.ForeignKey(Gimnasio, on_delete=models.CASCADE)
+    aforoUn = models.IntegerField()
+    aforoMaxUn = models.CharField(max_length=2)
 
 class Curso(models.Model):
     codCur = models.IntegerField(primary_key=True)
@@ -30,10 +32,11 @@ class Curso(models.Model):
     capMaxCur = models.CharField(max_length=2)
 
 class Usuario(models.Model):
+    idUs = models.IntegerField(primary_key=True)
     Hombre = 'H'
     Mujer = 'M'
     No_binario = 'NB'
-    codUs = models.CharField(max_length=15, primary_key=True)
+    codUs = models.CharField(max_length=15)
     sexos = [(Hombre, 'Hombre'),(Mujer, 'Mujer'),(No_binario, 'No binario'),]
     sexUs = models.CharField(max_length=3, choices=sexos)
     fechanacUs = models.DateField()
@@ -41,11 +44,4 @@ class Usuario(models.Model):
     fotoUs = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     pagoUs = models.BooleanField()
     tarjetaUs = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
-
-class Apuntado(models.Model):
-    cursoAp = models.ForeignKey(Curso, on_delete=models.CASCADE)
-    usuarioAp = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-
-class Alta(models.Model):
-    usuarioAl = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    gimnasioAl = models.ForeignKey(Gimnasio, on_delete=models.CASCADE)
+    apuntados = models.ManyToManyField(Curso)
