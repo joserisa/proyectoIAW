@@ -1,10 +1,10 @@
 from unittest.util import _MAX_LENGTH
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Gimnasio(models.Model):
-    codGym = models.IntegerField(primary_key=True)
+    #codGym = models.IntegerField(primary_key=True)
     nomGym = models.CharField(max_length=50)
     direccionGym =models.CharField(max_length=200)
     telefonoGym = models.CharField(max_length=9)
@@ -14,7 +14,7 @@ class Gimnasio(models.Model):
         return self.nomGym
 
 class Unidad(models.Model):
-    codUn = models.IntegerField(primary_key=True)
+    #codUn = models.IntegerField(primary_key=True)
     nomUn = models.CharField(max_length=50)
     estadoUn = models.BooleanField()
     gimnasioUn = models.ForeignKey(Gimnasio, on_delete=models.CASCADE)
@@ -24,7 +24,7 @@ class Unidad(models.Model):
         return self.nomUn
 
 class Curso(models.Model):
-    codCur = models.IntegerField(primary_key=True)
+    #codCur = models.IntegerField(primary_key=True)
     nomCur = models.CharField(max_length=50)
     profesorCur = models.CharField(max_length=50)
     horarioIniCur = models.TimeField(max_length=50, default='20:00')
@@ -38,7 +38,9 @@ class Curso(models.Model):
         return self.nomCur
 
 class Usuario(models.Model):
-    idUs = models.IntegerField(primary_key=True)
+    
+    #idUs = models.IntegerField(primary_key=True) ESTE CAMPO ES INUTIL PORQUE DJANGO LO HACE POR MI, CON TODOS LOS ID Y COD IGUAL
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     Hombre = 'H'
     Mujer = 'M'
     No_binario = 'NB'

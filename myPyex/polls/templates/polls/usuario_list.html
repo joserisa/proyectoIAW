@@ -2,8 +2,7 @@
     <ul>
         {% for usuario in usuario_list %}
             <li>
-                <a href={% url 'usuario-detail' usuario.idUs %}>{{ usuario.idUs }}</a>
-                ({{usuario.idUs}})
+                <a href={% url 'usuario-detail' user.pk %}>{{ user.first_name }} {{ user.last_name }}</a>
             </li>
         {% endfor %}
     </ul>
