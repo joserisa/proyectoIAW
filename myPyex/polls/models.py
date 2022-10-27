@@ -1,6 +1,7 @@
 from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 # Create your models here.
 
 class Gimnasio(models.Model):
@@ -12,6 +13,8 @@ class Gimnasio(models.Model):
     fotoGym = models.ImageField(height_field=None, width_field=None, max_length=100, upload_to ='uploads/')
     def __str__(self):
         return self.nomGym
+    def get_absolute_url(self):
+        return reverse('gimnasio-detail', kwargs={'pk': self.pk})
 
 class Unidad(models.Model):
     #codUn = models.IntegerField(primary_key=True)
@@ -22,6 +25,8 @@ class Unidad(models.Model):
     aforoMaxUn = models.CharField(max_length=2)
     def __str__(self):
         return self.nomUn
+    def get_absolute_url(self):
+        return reverse('unidad-detail', kwargs={'pk': self.pk})
 
 class Curso(models.Model):
     #codCur = models.IntegerField(primary_key=True)
@@ -36,6 +41,8 @@ class Curso(models.Model):
     capMaxCur = models.CharField(max_length=2)
     def __str__(self):
         return self.nomCur
+    def get_absolute_url(self):
+        return reverse('curso-detail', kwargs={'pk': self.pk})
 
 class Usuario(models.Model):
     
@@ -55,3 +62,5 @@ class Usuario(models.Model):
     apuntados = models.ManyToManyField(Curso)
     def __str__(self):
         return self.codUs
+    def get_absolute_url(self):
+        return reverse('usuario-detail', kwargs={'pk': self.pk})

@@ -1,0 +1,6 @@
+<h1>Formulario para crear un gimnasio.</h1>
+
+<form method="POST" class="post-form">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>

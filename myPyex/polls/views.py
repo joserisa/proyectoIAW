@@ -5,7 +5,10 @@ def index(request):
 
 from typing import List
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Gimnasio, Usuario, Curso, Unidad
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 #Alta, Apuntado
 
 def index(request):
@@ -74,4 +77,18 @@ class ApuntadoDetailView(DetailView):
     context_object_name = 'apuntado'
     queryset = Apuntado.objects.all()
 """
+
+#--------------------------------------------------
+class GimnasioCreateView(LoginRequiredMixin, CreateView):
+    model = Gimnasio
+    fields = ['nomGym','direccionGym','telefonoGym','correoGym','fotoGym']
+
+class GimnasioUpdateView(LoginRequiredMixin, UpdateView):
+    model = Gimnasio
+    fields = ['nomGym','direccionGym','telefonoGym','correoGym','fotoGym']
+
+class GimnasioDeleteView(LoginRequiredMixin, DeleteView):
+    model = Gimnasio
+    success_url = reverse_lazy('gimnasio-list')
+#--------------------------------------------------
 # Create your views here.
