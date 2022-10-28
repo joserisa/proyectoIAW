@@ -1,0 +1,6 @@
+<h1>Modificar gimnasio.</h1>
+
+<form method="POST" class="update-form">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Modificar</button>
+</form>

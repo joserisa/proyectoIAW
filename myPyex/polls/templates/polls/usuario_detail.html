@@ -14,3 +14,8 @@
     {% for curso in object.apuntados.all %}
     <td>{{ curso }} </td>
     {% endfor %}</p>
+    <ul>
+        <button type="button" onclick="window.location.href='edit/'">Editar</button>
+        <button type="button" onclick="window.location.href='delete/'">Borrar</button>
+    
+    </ul>

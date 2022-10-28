@@ -10,7 +10,7 @@ class Gimnasio(models.Model):
     direccionGym =models.CharField(max_length=200)
     telefonoGym = models.CharField(max_length=9)
     correoGym = models.EmailField(max_length=50)
-    fotoGym = models.ImageField(height_field=None, width_field=None, max_length=100, upload_to ='uploads/')
+    fotoGym = models.ImageField(height_field=None, width_field=None, max_length=100, upload_to ='uploads/', blank=True)
     def __str__(self):
         return self.nomGym
     def get_absolute_url(self):
@@ -56,9 +56,9 @@ class Usuario(models.Model):
     sexUs = models.CharField(max_length=3, choices=sexos)
     fechanacUs = models.DateField()
     telefonoUs= models.CharField(max_length = 9)
-    fotoUs = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    fotoUs = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, blank=True)
     pagoUs = models.BooleanField()
-    tarjetaUs = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    tarjetaUs = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, blank=True)
     apuntados = models.ManyToManyField(Curso)
     def __str__(self):
         return self.codUs

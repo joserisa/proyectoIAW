@@ -82,13 +82,56 @@ class ApuntadoDetailView(DetailView):
 class GimnasioCreateView(LoginRequiredMixin, CreateView):
     model = Gimnasio
     fields = ['nomGym','direccionGym','telefonoGym','correoGym','fotoGym']
+    success_url = reverse_lazy('gimnasio')
 
 class GimnasioUpdateView(LoginRequiredMixin, UpdateView):
     model = Gimnasio
     fields = ['nomGym','direccionGym','telefonoGym','correoGym','fotoGym']
+    success_url = reverse_lazy('gimnasio')
 
 class GimnasioDeleteView(LoginRequiredMixin, DeleteView):
     model = Gimnasio
-    success_url = reverse_lazy('gimnasio-list')
+    success_url = reverse_lazy('gimnasio')
 #--------------------------------------------------
+class CursoCreateView(LoginRequiredMixin, CreateView):
+    model = Curso
+    fields = ['nomCur','profesorCur','horarioIniCur','horarioFinCur','grupoCur','gimnasioCur','descCur','capCur','capMaxCur']
+    success_url = reverse_lazy('curso')
+
+class CursoUpdateView(LoginRequiredMixin, UpdateView):
+    model = Curso
+    fields = ['nomCur','profesorCur','horarioIniCur','horarioFinCur','grupoCur','gimnasioCur','descCur','capCur','capMaxCur']
+    success_url = reverse_lazy('curso')
+
+class CursoDeleteView(LoginRequiredMixin, DeleteView):
+    model = Curso
+    success_url = reverse_lazy('curso')
+#---------------------------------------------------------------------------------------------------
+class UnidadCreateView(LoginRequiredMixin, CreateView):
+    model = Unidad
+    fields = ['nomUn','estadoUn','gimnasioUn','aforoUn','aforoMaxUn']
+    success_url = reverse_lazy('unidad')
+
+class UnidadUpdateView(LoginRequiredMixin, UpdateView):
+    model = Unidad
+    fields = ['nomUn','estadoUn','gimnasioUn','aforoUn','aforoMaxUn']
+    success_url = reverse_lazy('unidad')
+
+class UnidadDeleteView(LoginRequiredMixin, DeleteView):
+    model = Unidad
+    success_url = reverse_lazy('unidad')
+#-----------------------------------------------------------------------------------------
+class UsuarioCreateView(LoginRequiredMixin, CreateView):
+    model = Usuario
+    fields = ['user','codUs','sexUs','fechanacUs','telefonoUs','fotoUs','pagoUs','tarjetaUs','apuntados']
+    success_url = reverse_lazy('usuario')
+
+class UsuarioUpdateView(LoginRequiredMixin, UpdateView):
+    model = Usuario
+    fields = ['user','codUs','sexUs','fechanacUs','telefonoUs','fotoUs','pagoUs','tarjetaUs','apuntados']
+    success_url = reverse_lazy('usuario')
+
+class UsuarioDeleteView(LoginRequiredMixin, DeleteView):
+    model = Usuario
+    success_url = reverse_lazy('usuario')
 # Create your views here.

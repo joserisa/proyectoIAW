@@ -1,0 +1,7 @@
+<h1>Borrar usuario</h1>
+
+<form method="POST" class="delete-form">{% csrf_token %}
+<p>¿Quieres borrar {{object }}</p>>
+    <button type="submit">Eliminar</button>
+    <button type="button" onclick="window.location.href='/usuario'">No</button>
+</form>
