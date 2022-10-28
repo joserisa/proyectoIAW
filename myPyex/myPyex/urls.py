@@ -19,7 +19,7 @@ from polls import views
 from polls.views import GimnasioCreateView, GimnasioDeleteView, GimnasioUpdateView, index, GimnasioListView, CursoListView, UsuarioListView, UnidadListView, GimnasioDetailView, CursoDetailView, UsuarioDetailView, UnidadDetailView, GimnasioCreateView, GimnasioUpdateView, GimnasioDeleteView, CursoCreateView, CursoDeleteView, CursoUpdateView, UnidadCreateView, UnidadDeleteView, UnidadUpdateView, UsuarioCreateView, UsuarioDeleteView, UsuarioUpdateView
 
 urlpatterns = [
-    path('', index),
+    path('', index, name='index'),
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
     path('gimnasio/', GimnasioListView.as_view(), name='gimnasio'),

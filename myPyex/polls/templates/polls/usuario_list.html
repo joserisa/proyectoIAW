@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h2>Usuario</h2>
     <ul>
         {% for usuario in usuario_list %}
@@ -9,3 +12,5 @@
     <form action= {% url 'usuario-add' %}>
         <input type="submit" value="Crear usuario">
       </form>
+
+      {% endblock %}

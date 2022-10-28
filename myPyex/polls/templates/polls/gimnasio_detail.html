@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>{{ object.headline }}</h1>
 <p>{{ object.content }}</p>
 <p>Nombre del gimnasio: {{ object.nomGym }}</p>
@@ -12,3 +15,4 @@
     <button type="button" onclick="window.location.href='delete/'">Borrar</button>
 
 </ul>
+{% endblock %}

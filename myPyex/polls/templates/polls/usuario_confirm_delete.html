@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>Borrar usuario</h1>
 
 <form method="POST" class="delete-form">{% csrf_token %}
@@ -5,3 +8,4 @@
     <button type="submit">Eliminar</button>
     <button type="button" onclick="window.location.href='/usuario'">No</button>
 </form>
+{% endblock %}

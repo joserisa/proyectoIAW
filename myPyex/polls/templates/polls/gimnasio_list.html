@@ -1,4 +1,6 @@
+{% extends 'base.html' %}
 
+{% block content %}
 
 
     <h2>Gimnasios</h2>
@@ -13,3 +15,4 @@
 <form action= {% url 'gimnasio-add' %}>
   <input type="submit" value="Crear Gimnasio">
 </form>
+{% endblock %}
