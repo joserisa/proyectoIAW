@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ object.headline }}</h1>
+<p>{{ object.content }}</p>
+<p>Nombre de usuario: {{ object.username }}</p>
+<p>Codigo: {{ object.codUs }}</p>
+<p>Tarjeta: {{ object.tarjetaUs }}</p>
+<p>Nombre: {{ object.first_name }}</p>
+<p>Apellido: {{ object.last_name }}</p>
+<p>Fecha nacimiento: {{ object.fechanacUs }}</p>
+<p>Telefono: {{ object.telefonoUs }}</p>
+<p>Correo: {{ object.email }}</p>
+<p>Sexo: {{ object.sexUs }}</p>
+<p>Foto: {{ object.fotoUs }}</p>
+<p>Pago: {{ object.pagoUs }}</p>
+<p>Apuntado a:
+    {% for curso in object.apuntados.all %}
+    <td>{{ curso }} </td>
+    {% endfor %}</p>
+    <ul>
+        <button type="button" onclick="window.location.href='edit/'">Editar</button>
+        <button type="button" onclick="window.location.href='delete/'">Borrar</button>
+    
+    </ul>
+    {% endblock %}

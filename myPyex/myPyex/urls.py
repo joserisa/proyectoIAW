@@ -15,8 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from polls import views
-from polls.views import GimnasioCreateView, GimnasioDeleteView, GimnasioUpdateView, index, GimnasioListView, CursoListView, UsuarioListView, UnidadListView, GimnasioDetailView, CursoDetailView, UsuarioDetailView, UnidadDetailView, GimnasioCreateView, GimnasioUpdateView, GimnasioDeleteView, CursoCreateView, CursoDeleteView, CursoUpdateView, UnidadCreateView, UnidadDeleteView, UnidadUpdateView, UsuarioCreateView, UsuarioDeleteView, UsuarioUpdateView
+from polls.views import *
 
 urlpatterns = [
     path('', index, name='index'),
@@ -24,12 +23,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('gimnasio/', GimnasioListView.as_view(), name='gimnasio'),
     path('curso/', CursoListView.as_view(), name='curso'),
-    path('usuario/', UsuarioListView.as_view(), name='usuario'),
+    path('usuario/', UserListView.as_view(), name='usuario'),
     path('unidad/', UnidadListView.as_view(), name='unidad'),
     #path('alta/', AltaListView.as_view()),
     #path('apuntado/', ApuntadoListView.as_view()),
     path('gimnasio/<int:pk>/', GimnasioDetailView.as_view(), name='gimnasio-detail'),
-    path('usuario/<int:pk>/', UsuarioDetailView.as_view(), name='usuario-detail'),
+    path('usuario/<int:pk>/', UserDetailView.as_view(), name='usuario-detail'),
     path('curso/<int:pk>/', CursoDetailView.as_view(), name='curso-detail'),
     #path('apuntado/<int:pk>/', ApuntadoDetailView.as_view(), name='apuntado-detail'),
     path('unidad/<int:pk>/', UnidadDetailView.as_view(), name='unidad-detail'),
@@ -43,8 +42,8 @@ urlpatterns = [
     path('unidad/add/', UnidadCreateView.as_view(), name='unidad-add'),
     path('unidad/<int:pk>/edit/', UnidadUpdateView.as_view(), name='unidad-update'),
     path('unidad/<int:pk>/delete/', UnidadDeleteView.as_view(), name='unidad-delete'),
-    path('usuario/add/', UsuarioCreateView.as_view(), name='usuario-add'),
-    path('usuario/<int:pk>/edit/', UsuarioUpdateView.as_view(), name='usuario-update'),
-    path('usuario/<int:pk>/delete/', UsuarioDeleteView.as_view(), name='usuario-delete'),
+    path('usuario/add/', UserCreateView.as_view(), name='usuario-add'),
+    path('usuario/<int:pk>/edit/', UserUpdateView.as_view(), name='usuario-update'),
+    path('usuario/<int:pk>/delete/', UserDeleteView.as_view(), name='usuario-delete'),
 ]
 

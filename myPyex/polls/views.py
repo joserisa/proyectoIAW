@@ -1,28 +1,36 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
-
+from .forms import UserForm
 from typing import List
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from .models import Gimnasio, Usuario, Curso, Unidad
+from .models import Gimnasio, User, Curso, Unidad
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
 #Alta, Apuntado
 
 def index(request):
     return render(request, "polls/index.html")
+
+class UserListView(ListView):
+    model = User
+    queryset = User.objects.all()
+    context_object_name = 'usuario_list'
 
 class GimnasioListView(ListView):
     model = Gimnasio
     queryset = Gimnasio.objects.all()
     context_object_name = 'gimnasio_list'
 
-class UsuarioListView(ListView):
+"""class UsuarioListView(ListView):
     model = Usuario
     queryset = Usuario.objects.all()
-    context_object_name = 'usuario_list'
+    context_object_name = 'usuario_list'"""
 
 class CursoListView(ListView):
     model = Curso
@@ -52,10 +60,15 @@ class GimnasioDetailView(DetailView):
         context['gimnasio_list'] = Gimnasio.objects.all()
         return context
 
-class UsuarioDetailView(DetailView):
+class UserDetailView(DetailView):
+    model = User
+    context_object_name = 'usuario'
+    queryset = User.objects.all()
+
+"""class UsuarioDetailView(DetailView):
     model = Usuario
     context_object_name = 'usuario'
-    queryset = Usuario.objects.all()
+    queryset = Usuario.objects.all()"""
 
 class CursoDetailView(DetailView):
     model = Curso
@@ -121,17 +134,18 @@ class UnidadDeleteView(LoginRequiredMixin, DeleteView):
     model = Unidad
     success_url = reverse_lazy('unidad')
 #-----------------------------------------------------------------------------------------
-class UsuarioCreateView(LoginRequiredMixin, CreateView):
-    model = Usuario
-    fields = ['user','codUs','sexUs','fechanacUs','telefonoUs','fotoUs','pagoUs','tarjetaUs','apuntados']
+class UserCreateView(CreateView):
+    model = User
+    form_class = UserForm
     success_url = reverse_lazy('usuario')
 
-class UsuarioUpdateView(LoginRequiredMixin, UpdateView):
-    model = Usuario
-    fields = ['user','codUs','sexUs','fechanacUs','telefonoUs','fotoUs','pagoUs','tarjetaUs','apuntados']
+class UserUpdateView(UpdateView):
+    model = User
+    fields = ('username','first_name','last_name','email','codUs','sexUs','fechanacUs','telefonoUs','fotoUs','pagoUs','tarjetaUs','apuntados')
     success_url = reverse_lazy('usuario')
+    template_name = "./polls/user_update_form.html"
 
-class UsuarioDeleteView(LoginRequiredMixin, DeleteView):
-    model = Usuario
+class UserDeleteView(DeleteView):
+    model = User
     success_url = reverse_lazy('usuario')
 # Create your views here.

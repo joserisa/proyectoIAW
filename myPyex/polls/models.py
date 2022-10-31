@@ -1,6 +1,7 @@
 from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 # Create your models here.
 
@@ -44,7 +45,7 @@ class Curso(models.Model):
     def get_absolute_url(self):
         return reverse('curso-detail', kwargs={'pk': self.pk})
 
-class Usuario(models.Model):
+"""class Usuario(models.Model):
     
     #idUs = models.IntegerField(primary_key=True) ESTE CAMPO ES INUTIL PORQUE DJANGO LO HACE POR MI, CON TODOS LOS ID Y COD IGUAL
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -62,5 +63,23 @@ class Usuario(models.Model):
     apuntados = models.ManyToManyField(Curso)
     def __str__(self):
         return self.codUs
+    def get_absolute_url(self):
+        return reverse('usuario-detail', kwargs={'pk': self.pk})"""
+
+class User(AbstractUser):
+    
+    #idUs = models.IntegerField(primary_key=True) ESTE CAMPO ES INUTIL PORQUE DJANGO LO HACE POR MI, CON TODOS LOS ID Y COD IGUAL
+    Hombre = 'H'
+    Mujer = 'M'
+    No_binario = 'NB'
+    codUs = models.CharField(max_length=15)
+    sexos = [(Hombre, 'Hombre'),(Mujer, 'Mujer'),(No_binario, 'No binario'),]
+    sexUs = models.CharField(max_length=3, choices=sexos)
+    fechanacUs = models.DateField(null=True)
+    telefonoUs= models.CharField(max_length = 9)
+    fotoUs = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, blank=True)
+    pagoUs = models.BooleanField(null=True)
+    tarjetaUs = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, blank=True)
+    apuntados = models.ManyToManyField(Curso)
     def get_absolute_url(self):
         return reverse('usuario-detail', kwargs={'pk': self.pk})
