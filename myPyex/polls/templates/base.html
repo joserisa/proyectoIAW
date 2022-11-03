@@ -73,35 +73,16 @@ body {
 <div class="navbar">
   <a href="{% url 'index' %}">Inicio</a>
   <div class="dropdown">
-    <button class="dropbtn">Crear 
+    <button class="dropbtn">Ver 
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="gimnasio-add">Gimnasio</a>
-      <a href="curso-add">Curso</a>
-      <a href="unidad-add">Unidad</a>
-      <a href="usuario-add">Usuario</a>
+      <a href={% url 'gimnasio' %}>Gimnasios</a>
+      <a href={% url 'usuario' %}>Usuarios</a>
+      <a href={% url 'unidad' %}>Unidades de ejercicio</a>
+      <a href={% url 'curso' %}>Cursos</a>
     </div>
   </div>
-  <div class="dropdown">
-    <button class="dropbtn">SAD 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="SAD/sad1.html">Primera EV</a>
-      <a href="SAD/sad2.html">Segunda EV</a>
-    </div>
-    </div>
-    <div class="dropdown">
-        <button class="dropbtn">IW 
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a href="IW/iw1.html">Primera EV</a>
-          <a href="IW/iw2.html">Segunda EV</a>
-        </div>
-        </div>
-  <a href="http://servus.inf/">Servus</a>
 </div>
 </body>
 </html>

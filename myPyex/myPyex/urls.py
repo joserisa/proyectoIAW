@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from polls.views import *
+from polls import views
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('', index, name='index'),
@@ -42,8 +44,11 @@ urlpatterns = [
     path('unidad/add/', UnidadCreateView.as_view(), name='unidad-add'),
     path('unidad/<int:pk>/edit/', UnidadUpdateView.as_view(), name='unidad-update'),
     path('unidad/<int:pk>/delete/', UnidadDeleteView.as_view(), name='unidad-delete'),
-    path('usuario/add/', UserCreateView.as_view(), name='usuario-add'),
+    path('register/', UserCreateView.as_view(), name='usuario-add'),
     path('usuario/<int:pk>/edit/', UserUpdateView.as_view(), name='usuario-update'),
     path('usuario/<int:pk>/delete/', UserDeleteView.as_view(), name='usuario-delete'),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path("register/", views.register_request, name="register"),
 ]
 

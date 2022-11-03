@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Este es el user form</h1>
+<h2>Formulario de registro de usuario.</h2>
 
 <form method="POST" class="post-form">{% csrf_token %}
     {{ form.as_p }}

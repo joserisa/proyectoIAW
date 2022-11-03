@@ -3,14 +3,19 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
+<h2>¡Muy buenas {{ user.username }}!</h2>
+  Hace un buen día para hacer ejercicio. Dale caña monstro.
+  <p><a href="{% url 'logout' %}">Cerrar sesión</a></p>
+{% else %}
 <h2>Bienvenido a la aplicación de Pyex.</h2>
 <p>Aquí podrás ver el gimnasio de una forma más moderna y accesible para todos.</p>
 <h3>Información de contacto</h3>
 <p>josemaria.riol.sanchez.alu@iesfernandoaguilar.es</p>
+  <p>No has iniciado sesión</p>
+  <a href="{% url 'login' %}">Iniciar sesión</a>
+  <p class="text-center">¿No tienes una cuenta? <a href="register/">Créala aquí</a>.</p>
+{% endif %}
 
-<p><a href={% url 'gimnasio' %}>Gimnasios</a></p>
-<p><a href={% url 'usuario' %}>Usuarios</a></p>
-<p><a href={% url 'unidad' %}>Unidades de ejercicio</a></p>
-<p><a href={% url 'curso' %}>Cursos</a></p>
 
 {% endblock%}

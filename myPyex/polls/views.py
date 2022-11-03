@@ -9,7 +9,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-
+from .forms import NewUserForm
+from django.contrib import messages
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 #Alta, Apuntado
@@ -148,4 +149,16 @@ class UserUpdateView(UpdateView):
 class UserDeleteView(DeleteView):
     model = User
     success_url = reverse_lazy('usuario')
+#--------------------------------
+def register_request(request):
+	if request.method == "POST":
+		form = NewUserForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			login(request, user)
+			messages.success(request, "Registro completo." )
+			return redirect("main:home")
+		messages.error(request, "Registro no completo. Informacion invalida.")
+	form = NewUserForm()
+	return render (request=request, template_name="/polls/register.html", context={"register_form":form})
 # Create your views here.

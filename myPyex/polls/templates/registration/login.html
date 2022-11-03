@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+{% block content %}
+<h2>Página de inicio de sesión.</h2>
+Inicia sesión introduciendo nombre de usuario y contraseña.
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log In</button>
+</form>
+{% endblock %}
