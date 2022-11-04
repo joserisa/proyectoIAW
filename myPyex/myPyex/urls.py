@@ -18,10 +18,12 @@ from django.urls import include, path
 from polls.views import *
 from polls import views
 from django.views.generic.base import TemplateView
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('', index, name='index'),
-    path('polls/', include('polls.urls')),
+    #path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
     path('gimnasio/', GimnasioListView.as_view(), name='gimnasio'),
     path('curso/', CursoListView.as_view(), name='curso'),
@@ -50,5 +52,6 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path("register/", views.register_request, name="register"),
-]
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

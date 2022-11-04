@@ -160,5 +160,5 @@ def register_request(request):
 			return redirect("main:home")
 		messages.error(request, "Registro no completo. Informacion invalida.")
 	form = NewUserForm()
-	return render (request=request, template_name="/polls/register.html", context={"register_form":form})
+	return render (request=request, template_name="/register.html", context={"register_form":form})
 # Create your views here.

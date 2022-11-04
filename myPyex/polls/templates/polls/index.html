@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 
+
 {% block content %}
+<!--Register
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">--> 
 
 {% if user.is_authenticated %}
 <h2>¡Muy buenas {{ user.username }}!</h2>

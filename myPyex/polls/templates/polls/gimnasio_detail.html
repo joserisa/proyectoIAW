@@ -8,7 +8,7 @@
 <p>Direccion del gimnasio: {{ object.direccionGym }}</p>
 <p>Telefono del gimnasio: {{ object.telefonoGym }}</p>
 <p>Correo del gimnasio: {{ object.correoGym }}</p>
-<p>Foto del gimnasio: {{ object.fotoGym }}</p>
+<p>Foto del gimnasio: <img src="/media/{{ object.fotoGym }}" alt="Foto de {{ object.nomGym }} ">  </p>
 
 <ul>
     <button type="button" onclick="window.location.href='edit/'">Editar</button>
