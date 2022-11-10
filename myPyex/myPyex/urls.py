@@ -20,6 +20,8 @@ from polls import views
 from django.views.generic.base import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
+from rest_framework import routers, serializers, viewsets
+from polls.api import router
 
 urlpatterns = [
     path('', index, name='index'),
@@ -52,6 +54,9 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path("register/", views.register_request, name="register"),
+    #API
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
