@@ -5,7 +5,7 @@
     <ul>
         {% for usuario in usuario_list %}
             <li>
-                <a href={% url 'usuario-detail' usuario.id %}>{{ usuario.first_name }} {{ usuario.last_name }}</a>
+                <a href={% url 'usuarios-detail' usuario.id %}>{{ usuario.first_name }} {{ usuario.last_name }}</a>
             </li>
         {% endfor %}
     </ul>

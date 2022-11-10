@@ -6,7 +6,7 @@
     <ul>
         {% for curso in curso_list %}
             <li>
-                <a href={% url 'curso-detail' curso.pk %}>{{ curso.nomCur }}</a>
+                <a href={% url 'cursos-detail' curso.pk %}>{{ curso.nomCur }}</a>
             </li>
         {% endfor %}
     </ul>

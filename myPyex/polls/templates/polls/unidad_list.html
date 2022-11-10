@@ -5,7 +5,7 @@
     <ul>
         {% for unidad in unidad_list %}
             <li>
-                <a href={% url 'unidad-detail' unidad.pk %}>{{ unidad.nomUn }}</a>
+                <a href={% url 'unidades-detail' unidad.pk %}>{{ unidad.nomUn }}</a>
             </li>
         {% endfor %}
     </ul>

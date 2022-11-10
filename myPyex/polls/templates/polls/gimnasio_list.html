@@ -7,7 +7,7 @@
     <ul>
         {% for gimnasio in gimnasio_list %}
             <li>
-                <a href={% url 'gimnasio-detail' gimnasio.pk %}>{{ gimnasio.nomGym }}</a>
+                <a href={% url 'gimnasios-detail' gimnasio.pk %}>{{ gimnasio.nomGym }}</a>
             </li>
         {% endfor %}
     </ul>

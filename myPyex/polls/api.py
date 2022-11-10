@@ -28,6 +28,7 @@ class GimnasioViewSet(viewsets.ModelViewSet):
 
 
 # Routers provide an easy way of automatically determining the URL conf.
+
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'gimnasios', GimnasioViewSet)
