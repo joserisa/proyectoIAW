@@ -4,8 +4,7 @@
 <h2>Formulario de registro de usuario.</h2>
 
 <form enctype="multipart/form-data" method="post" action="/media/">{% csrf_token %}
-    
-    {{ form.as_p }}
+    {{ form.as_p }} 
     <button type="submit">Guardar</button>
 </form>
 {% endblock %}
