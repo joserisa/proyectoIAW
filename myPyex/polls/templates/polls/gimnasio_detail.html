@@ -11,8 +11,10 @@
 <p>Foto del gimnasio: <img src="/media/{{ object.fotoGym }}" alt="Foto de {{ object.nomGym }} ">  </p>
 
 <ul>
+    {% if user.is_staff %}
     <button type="button" onclick="window.location.href='edit/'">Editar</button>
     <button type="button" onclick="window.location.href='delete/'">Borrar</button>
+    {% endif %}
 
 </ul>
 {% endblock %}

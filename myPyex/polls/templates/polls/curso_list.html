@@ -10,7 +10,9 @@
             </li>
         {% endfor %}
     </ul>
+    {% if user.is_staff %}
     <form action= {% url 'curso-add' %}>
         <input type="submit" value="Crear curso">
       </form>
+      {% endif %}
 {% endblock %}

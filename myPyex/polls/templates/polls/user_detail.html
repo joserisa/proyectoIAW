@@ -19,8 +19,10 @@
     <td>{{ curso }} </td>
     {% endfor %}</p>
     <ul>
+        {% if user.is_staff or user.pk == object.pk %}
         <button type="button" onclick="window.location.href='edit/'">Editar</button>
         <button type="button" onclick="window.location.href='delete/'">Borrar</button>
+        {% endif %}
     
     </ul>
     {% endblock %}

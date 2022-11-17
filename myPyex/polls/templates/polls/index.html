@@ -2,8 +2,9 @@
 {% load static %}
 {% block content %}
 {% if user.is_authenticated %}
-Hace un buen día para hacer ejercicio. Dale caña monstro.
-<p><a href="{% url 'logout' %}">Cerrar sesión</a></p>
+<h2>Muy buenas {{ user.username }}</h2>
+<p>Hace un buen día para hacer ejercicio. Dale caña monstro.</p>
+<p>¿No sabes qué hacer? Prueba a ver todos los gimnasios que están esperando a que te unas. Entrena duro, mejora junto a Pyex.
 {% else %}
         <!-- Header-->
         <header class="masthead text-center text-white">

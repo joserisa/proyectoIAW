@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-(8_((3@f#r0d!tz5$$djewd+p18^p%#ij5*!isb)x+5dxwk2uz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.1.2.201','127.0.0.1','10.1.2.131']
+ALLOWED_HOSTS = ['*','10.1.2.201','127.0.0.1','10.1.2.131']
 AUTH_USER_MODEL = 'polls.User'
 
 

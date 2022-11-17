@@ -8,8 +8,10 @@
 <p>Gimnasio propietaria de la maquina: {{ object.gimnasioUn }}</p>
 <p>Estado: {{ object.estadoUn }}</p>
 <ul>
+    {% if user.is_staff %}
     <button type="button" onclick="window.location.href='edit/'">Editar</button>
     <button type="button" onclick="window.location.href='delete/'">Borrar</button>
+    {% endif %}
 
 </ul>
 {% endblock %}

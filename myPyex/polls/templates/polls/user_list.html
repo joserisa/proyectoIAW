@@ -5,12 +5,9 @@
     <ul>
         {% for usuario in usuario_list %}
             <li>
-                <a href={% url 'usuarios-detail' usuario.id %}>{{ usuario.first_name }} {{ usuario.last_name }}</a>
+                <a href={% url 'usuarios-detail' usuario.id %}>{{ usuario.username }}</a>
             </li>
         {% endfor %}
     </ul>
-    <form action= {% url 'usuario-add' %}>
-        <input type="submit" value="Crear usuario">
-      </form>
 
       {% endblock %}

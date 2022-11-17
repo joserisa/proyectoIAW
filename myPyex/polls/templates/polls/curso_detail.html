@@ -12,8 +12,10 @@
 <p>Descripcion: {{ object.descCur }}</p>
 <p>Capacidad: {{ object.capCur }}/{{ object.capMaxCur }}</p>
 <ul>
+    {% if user.is_staff %}
     <button type="button" onclick="window.location.href='edit/'">Editar</button>
     <button type="button" onclick="window.location.href='delete/'">Borrar</button>
+    {% endif %}
 
 </ul>
 
