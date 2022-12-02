@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Unidades de ejercicio</h2>
+    <ul>
+        {% for unidad in unidad_list %}
+            <li>
+                <a href={% url 'unidades-detail' unidad.pk %}>{{ unidad.nomUn }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <form action= {% url 'unidad-add' %}>
+        <input type="submit" value="Crear unidad">
+      </form>
+
+      {% endblock %}

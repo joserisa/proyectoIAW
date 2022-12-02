@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ object.headline }}</h1>
+<p>{{ object.content }}</p>
+<p>Codigo: {{ object.pk }}</p>
+<p>Nombre: {{ object.nomCur }}</p>
+<p>Profesor: {{ object.profesorCur }}</p>
+<p>Horario: {{ object.horarioIniCur }}-{{ object.horarioFinCur }}</p>
+<p>Grupo: {{ object.grupoCur }}</p>
+<p>Gimnasio que imparte el curso: {{ object.gimnasioCur }}</p>
+<p>Descripcion: {{ object.descCur }}</p>
+<p>Capacidad: {{ object.capCur }}/{{ object.capMaxCur }}</p>
+<ul>
+    {% if user.is_staff %}
+    <button type="button" onclick="window.location.href='edit/'">Editar</button>
+    <button type="button" onclick="window.location.href='delete/'">Borrar</button>
+    {% endif %}
+
+</ul>
+
+{% endblock %}

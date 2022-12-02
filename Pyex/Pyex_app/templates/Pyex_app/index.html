@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+<h2>Muy buenas {{ user.username }}</h2>
+<p>Hace un buen día para hacer ejercicio. Dale caña monstro.</p>
+<p>¿No sabes qué hacer? Prueba a ver todos los gimnasios que están esperando a que te unas. Entrena duro, mejora junto a Pyex.
+{% else %}
+        <!-- Header-->
+        <header class="masthead text-center text-white">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-0">Gimnasios Pyex</h1>
+                    <h2 class="masthead-subheading mb-0">El futuro de los gimnasios</h2>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">¿Quieres saber más?</a>
+                </div>
+            </div>
+            <div class="bg-circle-1 bg-circle"></div>
+            <div class="bg-circle-2 bg-circle"></div>
+            <div class="bg-circle-3 bg-circle"></div>
+            <div class="bg-circle-4 bg-circle"></div>
+        </header>
+        <!-- Content section 1-->
+        <section id="scroll">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'assets/img/gymsis.jpg' %}" alt="..." /></div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="p-5">
+                            <h2 class="display-4">Para todos aquellos amantes del deporte...</h2>
+                            <p>Nuestra aplicación permite a los usuarios registrarse de forma global poder acceder a todos los Gimnasios Pyex, estés donde estés. Solo un registro, acceso a todos los gimnasios al alcance de tu móvil.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Content section 2-->
+        <section>
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'assets/img/qr.jpg' %}" alt="..." /></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <h2 class="display-4">Un QR de identificación.</h2>
+                            <p>El código QR te permitirá acceder a cualquier gimnasio Pyex y acceder a las máquinas. Puedes mostrar tu código QR a través de tu dispositivo móvil.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Content section 3-->
+        <section>
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'assets/img/movil.png' %}" alt="..." /></div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="p-5">
+                            <h2 class="display-4">Una aplicación con la que hacer todo.</h2>
+                            <p>La aplicación no solo te permite darte de alta o de baja en el gimnasio sin tener que ir de forma presencial, también te permite ver qué máqinas están libres a tan solo un vistazo en tu teléfono. También podrás apuntarte a los diferentes cursos que se imparten en cada uno de nuestros gimnasios. Ten control absoluto sobre tu ejercicio.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+
+{% endif %}
+{% endblock%}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ object.headline }}</h1>
+<p>{{ object.content }}</p>
+<p>Codigo: {{ object.pk }}</p>
+<p>Nombre: {{ object.nomUn }}</p>
+<p>Gimnasio propietaria de la maquina: {{ object.gimnasioUn }}</p>
+<p>Estado: {{ object.estadoUn }}</p>
+<ul>
+    {% if user.is_staff %}
+    <button type="button" onclick="window.location.href='edit/'">Editar</button>
+    <button type="button" onclick="window.location.href='delete/'">Borrar</button>
+    {% endif %}
+
+</ul>
+{% endblock %}

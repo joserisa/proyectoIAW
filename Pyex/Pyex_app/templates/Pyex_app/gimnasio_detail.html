@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ object.headline }}</h1>
+<p>{{ object.content }}</p>
+<p>Nombre del gimnasio: {{ object.nomGym }}</p>
+<p>Código del gimnasio: {{ object.pk }}</p>
+<p>Direccion del gimnasio: {{ object.direccionGym }}</p>
+<p>Telefono del gimnasio: {{ object.telefonoGym }}</p>
+<p>Correo del gimnasio: {{ object.correoGym }}</p>
+<p>Foto del gimnasio: <img src="/media/{{ object.fotoGym }}" alt="Foto de {{ object.nomGym }} ">  </p>
+
+<ul>
+    {% if user.is_staff %}
+    <button type="button" onclick="window.location.href='edit/'">Editar</button>
+    <button type="button" onclick="window.location.href='delete/'">Borrar</button>
+    {% endif %}
+
+</ul>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h2>Cursos</h2>
+    <ul>
+        {% for curso in curso_list %}
+            <li>
+                <a href={% url 'cursos-detail' curso.pk %}>{{ curso.nomCur }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <form action= {% url 'curso-add' %}>
+        <input type="submit" value="Crear curso">
+      </form>
+{% endblock %}
