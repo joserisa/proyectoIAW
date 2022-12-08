@@ -25,9 +25,9 @@ SECRET_KEY = 'django-insecure-(8_((3@f#r0d!tz5$$djewd+p18^p%#ij5*!isb)x+5dxwk2uz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','10.1.2.201','127.0.0.1','10.1.2.131']
+ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'Pyex_app.User'
-
+CSRF_TRUSTED_ORIGINS = ['https://pyex.duckdns.org']
 
 # Application definition
 
@@ -138,15 +138,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "index"
 LOGOUT_REDIRECT_URL = "index"
 
-STATIC_ROOT =os.path.join(BASE_DIR, "statics")
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
+STATIC_ROOT ="static/"
+MEDIA_ROOT ='media/'
+STATIC_URL="static/"
 MEDIA_URL ='/media/'
-STATICFILES_DIRS=[
-        os.path.join(BASE_DIR, "static"),
-]
-
-
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

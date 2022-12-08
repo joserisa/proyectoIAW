@@ -11,7 +11,7 @@ class Gimnasio(models.Model):
     direccionGym =models.CharField('Dirección', max_length=200)
     telefonoGym = models.CharField('Teléfono', max_length=9)
     correoGym = models.EmailField('email', max_length=50)
-    fotoGym = models.ImageField('Foto del Gimnasio', height_field=None, width_field=None, max_length=100, upload_to ='fotgym/', blank=True)
+    fotoGym = models.ImageField('Foto del Gimnasio', height_field=None, width_field=None, max_length=100, upload_to ='fotgym', blank=True)
     def __str__(self):
         return self.nomGym
     def get_absolute_url(self):
@@ -76,9 +76,9 @@ class User(AbstractUser):
     sexUs = models.CharField('Sexo', max_length=3, choices=sexos)
     fechanacUs = models.DateField('Fecha nacimiento', null=True, blank=True)
     telefonoUs= models.CharField('Telefono', max_length = 9, blank=True)
-    fotoUs = models.ImageField('Foto de usuario', upload_to='fotus/', height_field=None, width_field=None, max_length=100, blank=True)
+    fotoUs = models.ImageField('Foto de usuario', upload_to='fotus', height_field=None, width_field=None, max_length=100, blank=True)
     pagoUs = models.BooleanField('Pagado', null=True, blank=True)
-    tarjetaUs = models.ImageField('Tarjeta QR', upload_to='fotus/', height_field=None, width_field=None, max_length=100, blank=True)
+    tarjetaUs = models.ImageField('Tarjeta QR', upload_to='fotus', height_field=None, width_field=None, max_length=100, blank=True)
     apuntados = models.ManyToManyField(Curso, blank=True)
     def get_absolute_url(self):
         return reverse('usuario-detail', kwargs={'pk': self.pk})
