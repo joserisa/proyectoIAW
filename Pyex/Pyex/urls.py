@@ -73,5 +73,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
+    #SEARCH
+    path('gimnasio/search/', search.as_view(), name="search"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

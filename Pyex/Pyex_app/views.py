@@ -13,13 +13,26 @@ from .forms import NewUserForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
+from django.db.models import Q
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 #Alta, Apuntado
 
 def index(request):
     return render(request, "Pyex_app/index.html")
+
+class search(ListView):
+    model = Gimnasio
+    template_name="search_results.html"
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list=Gimnasio.objects.filter(Q(nomGym__in=[query]))
+        return object_list
+#    def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
+#        try:
+#            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
+#        except:
+#            return False
 
 class UserListView(ListView):
     model = User

@@ -46,6 +46,7 @@ class UnidadSerializer(serializers.HyperlinkedModelSerializer):
 class UnidadViewSet(viewsets.ModelViewSet):
     queryset = Unidad.objects.all()
     serializer_class = UnidadSerializer
+# PERMISOS DE LA API, HAREMOS QUE SEA OWNER O SOLO LECTURA.
 
 # Routers provide an easy way of automatically determining the URL conf.
 
