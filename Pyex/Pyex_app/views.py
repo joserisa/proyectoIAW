@@ -215,12 +215,12 @@ class UnidadDeleteView(UserPassesTestMixin, DeleteView):
 class UserCreateView(CreateView):
     model = User
     form_class = UserForm
-    success_url = reverse_lazy('usuario')
+    success_url = reverse_lazy('usuarios-detail')
 
 class UserUpdateView(UserPassesTestMixin, UpdateView):
     model = User
     fields = ('username','first_name','last_name','email','codUs','sexUs','fechanacUs','telefonoUs','fotoUs','pagoUs','tarjetaUs','apuntados')
-    success_url = reverse_lazy('usuario')
+    success_url = reverse_lazy('usuarios-list')
     template_name = "./Pyex_app/user_update_form.html"
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:

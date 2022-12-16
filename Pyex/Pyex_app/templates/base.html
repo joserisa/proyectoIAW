@@ -26,8 +26,11 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         {% if user.is_authenticated %}
+			<li class="nav-item"><a class="nav-link" <form action="{% url 'search' %}" method="get">
+  				<input name="q" type="text" placeholder="Busca gimnasios...">
+			</form></a></li>
+			<li class="nav-item"><a class="nav-link" href={% url 'usuarios-detail' user.id %}>{{ user.username }}</a></li>
                         <li class="nav-item"><a class="nav-link" href={% url 'gimnasio' %}>Gimnasios</a></li>
-                        <li class="nav-item"><a class="nav-link" href={% url 'usuario' %}>Usuarios</a></li>
                         <li class="nav-item"><a class="nav-link" href={% url 'unidad' %}>Unidades de ejercicio</a></li>
                         <li class="nav-item"><a class="nav-link" href={% url 'curso' %}>Cursos</li>
                         <li class="nav-item"><a class="nav-link" href={% url 'logout' %}>Cerrar sesión</a></li>
