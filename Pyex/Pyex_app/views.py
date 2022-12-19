@@ -26,7 +26,7 @@ class search(ListView):
     template_name="search_results.html"
     def get_queryset(self):
         query = self.request.GET.get("q")
-        object_list=Gimnasio.objects.filter(Q(nomGym__in=[query]))
+        object_list=Gimnasio.objects.filter(Q(nomGym__icontains=query))
         return object_list
 #    def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
 #        try:
@@ -34,21 +34,23 @@ class search(ListView):
 #        except:
 #            return False
 
-class UserListView(ListView):
+class UserListView(UserPassesTestMixin,ListView):
     model = User
     queryset = User.objects.all()
     context_object_name = 'usuario_list'
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+    def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
+        try:
+            return self.request.user.is_superuser
+        except:
+            return False
 
 class GimnasioListView(ListView):
     model = Gimnasio
     queryset = Gimnasio.objects.all()
     context_object_name = 'gimnasio_list'
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+#    @method_decorator(login_required)
+#    def dispatch(self, *args, **kwargs):
+#        return super().dispatch(*args, **kwargs)
 """class UsuarioListView(ListView):
     model = Usuario
     queryset = Usuario.objects.all()
@@ -85,16 +87,16 @@ class GimnasioDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['gimnasio_list'] = Gimnasio.objects.all()
         return context
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+#    @method_decorator(login_required)
+#    def dispatch(self, *args, **kwargs):
+#        return super().dispatch(*args, **kwargs)
 class UserDetailView(UserPassesTestMixin,DetailView):
     model = User
     context_object_name = 'usuario'
     queryset = User.objects.all()
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:
-            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
+            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk")) or self.request.user.is_superuser
         except:
             return False
 
@@ -137,16 +139,18 @@ class GimnasioCreateView(UserPassesTestMixin, CreateView):
     success_url = reverse_lazy('gimnasio')
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:
-            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
+            #return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
+            return self.request.user.is_superuser
         except:
             return False
 class GimnasioUpdateView(UserPassesTestMixin, UpdateView):
     model = Gimnasio
     fields = ['nomGym','direccionGym','telefonoGym','correoGym','fotoGym']
     success_url = reverse_lazy('gimnasio')
+    template_name = "./Pyex_app/gimnasio_update_form.html"
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:
-            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
+            return self.request.user.is_superuser
         except:
             return False
 class GimnasioDeleteView(UserPassesTestMixin, DeleteView):
@@ -154,7 +158,7 @@ class GimnasioDeleteView(UserPassesTestMixin, DeleteView):
     success_url = reverse_lazy('gimnasio')
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:
-            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
+            return self.request.user.is_superuser
         except:
             return False
 #--------------------------------------------------
@@ -164,16 +168,17 @@ class CursoCreateView(UserPassesTestMixin, CreateView):
     success_url = reverse_lazy('curso')
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:
-            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
+            return self.request.user.is_superuser
         except:
             return False
 class CursoUpdateView(UserPassesTestMixin, UpdateView):
     model = Curso
     fields = ['nomCur','profesorCur','horarioIniCur','horarioFinCur','grupoCur','gimnasioCur','descCur','capCur','capMaxCur']
     success_url = reverse_lazy('curso')
+    template_name = "./Pyex_app/curso_update_form.html"
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:
-            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
+            return self.request.user.is_superuser
         except:
             return False
 class CursoDeleteView(UserPassesTestMixin, DeleteView):
@@ -181,7 +186,7 @@ class CursoDeleteView(UserPassesTestMixin, DeleteView):
     success_url = reverse_lazy('curso')
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:
-            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
+            return self.request.user.is_superuser
         except:
             return False
 #---------------------------------------------------------------------------------------------------
@@ -191,36 +196,37 @@ class UnidadCreateView(UserPassesTestMixin, CreateView):
     success_url = reverse_lazy('unidad')
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:
-            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
+            return self.request.user.is_superuser
         except:
             return False
-class UnidadUpdateView(UserPassesTestMixin, UpdateView):
+class UnidadUpdateView(UpdateView):
     model = Unidad
-    fields = ['nomUn','estadoUn','gimnasioUn','aforoUn','aforoMaxUn']
+    fields = ['estadoUn']
     success_url = reverse_lazy('unidad')
-    def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
-        try:
-            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
-        except:
-            return False
+    template_name = "./Pyex_app/unidad_update_form.html"
+#   def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
+#        try:
+#            return self.request.user.is_superuser
+#        except:
+#            return False
 class UnidadDeleteView(UserPassesTestMixin, DeleteView):
     model = Unidad
     success_url = reverse_lazy('unidad')
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:
-            return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))
+            return self.request.user.is_superuser
         except:
             return False
 #-----------------------------------------------------------------------------------------
 class UserCreateView(CreateView):
     model = User
     form_class = UserForm
-    success_url = reverse_lazy('usuarios-detail')
+    success_url = reverse_lazy('index')
 
 class UserUpdateView(UserPassesTestMixin, UpdateView):
     model = User
-    fields = ('username','first_name','last_name','email','codUs','sexUs','fechanacUs','telefonoUs','fotoUs','pagoUs','tarjetaUs','apuntados')
-    success_url = reverse_lazy('usuarios-list')
+    fields = ('username','first_name','last_name','email','sexUs','fechanacUs','telefonoUs','fotoUs','apuntados','ocupados')
+    success_url = reverse_lazy('index')
     template_name = "./Pyex_app/user_update_form.html"
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:
@@ -229,7 +235,7 @@ class UserUpdateView(UserPassesTestMixin, UpdateView):
             return False
 class UserDeleteView(UserPassesTestMixin, DeleteView):
     model = User
-    success_url = reverse_lazy('usuario')
+    success_url = reverse_lazy('index')
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:
             return User.objects.get(pk=self.request.user.pk)==User.objects.get(pk=self.kwargs.get("pk"))

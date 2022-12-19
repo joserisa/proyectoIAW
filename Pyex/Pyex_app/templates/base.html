@@ -26,14 +26,16 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         {% if user.is_authenticated %}
-			<li class="nav-item"><a class="nav-link" <form action="{% url 'search' %}" method="get">
-  				<input name="q" type="text" placeholder="Busca gimnasios...">
-			</form></a></li>
-			<li class="nav-item"><a class="nav-link" href={% url 'usuarios-detail' user.id %}>{{ user.username }}</a></li>
-                        <li class="nav-item"><a class="nav-link" href={% url 'gimnasio' %}>Gimnasios</a></li>
+			<!--<li class="nav-item"><a class="nav-link" <form action="{% url 'search' %}" method="get"> <input name="q" type="text" placeholder="Busca gimnasios..."></form></a></li>-->
+			<li class="nav-item"><a class="nav-link" href={% url 'gimnasio' %}>Gimnasios</a></li>
                         <li class="nav-item"><a class="nav-link" href={% url 'unidad' %}>Unidades de ejercicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href={% url 'curso' %}>Cursos</li>
+                        <li class="nav-item"><a class="nav-link" href={% url 'curso' %}>Cursos</a></li>
+			<li class="nav-item"><a class="nav-link" href={% url 'usuarios-detail' user.id %}>{{ user.username }}</a></li>
                         <li class="nav-item"><a class="nav-link" href={% url 'logout' %}>Cerrar sesión</a></li>
+   <form action="{% url 'search' %}" method="get">
+      <input name="q" type="search" placeholder="Busca gimnasios..." aria-label="Search">
+      <button class="btn btn-primary btn-xl rounded-pill mt-2 " style="padding: 5px;" type="submit">Buscar</button>
+    </form>
                         {% else %}
                         <li class="nav-item"><a class="nav-link" href={% url 'usuario-add' %}>Registrarse</a></li>
                         <li class="nav-item"><a class="nav-link" href={% url 'login' %}>Iniciar sesión</a></li>

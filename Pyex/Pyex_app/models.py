@@ -80,5 +80,6 @@ class User(AbstractUser):
     pagoUs = models.BooleanField('Pagado', null=True, blank=True)
     tarjetaUs = models.ImageField('Tarjeta QR', upload_to='fotus', height_field=None, width_field=None, max_length=100, blank=True)
     apuntados = models.ManyToManyField(Curso, blank=True)
+    ocupados = models.ManyToManyField(Unidad, blank=True)
     def get_absolute_url(self):
         return reverse('usuario-detail', kwargs={'pk': self.pk})

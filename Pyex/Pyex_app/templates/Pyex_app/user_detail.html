@@ -4,21 +4,25 @@
 <h1>{{ object.headline }}</h1>
 <p>{{ object.content }}</p>
 <p>Nombre de usuario: {{ object.username }}</p>
-<p>Codigo: {{ object.codUs }}</p>
-<p>Tarjeta: <img src="/media/{{ object.tarjetaUs }}" alt="Foto tarjeta de {{ object.username }}"></p>
 <p>Nombre: {{ object.first_name }}</p>
 <p>Apellido: {{ object.last_name }}</p>
 <p>Fecha nacimiento: {{ object.fechanacUs }}</p>
 <p>Telefono: {{ object.telefonoUs }}</p>
 <p>Correo: {{ object.email }}</p>
 <p>Sexo: {{ object.sexUs }}</p>
-<p>Foto: <img src="/media/{{ object.fotoUs }}" alt="Foto del usuario {{ object.username }}"></p>
-<p>Pago: {{ object.pagoUs }}</p>
+<p>Pago: {% if object.PagoUs is True %} Al corriente de pago {% else %} Moroso {% endif %}</p>
+<p>Foto: <img src="/media/{{ object.fotoUs }}" width="300" height="250" alt="Foto del usuario {{ object.username }}"></p>
+<p>Tarjeta: <img src="/media/{{ object.tarjetaUs }}" alt="Foto tarjeta de {{ object.username }}"></p>
 <p>Apuntado a:
     {% for curso in object.apuntados.all %}
-    <td>{{ curso }} </td>
+    <td><a href={% url 'cursos-detail' curso.pk %}>{{ curso }}</a> </td>
+    {% endfor %}</p>
+<p>Maquinas pilladas:
+    {% for maquina in object.ocupados.all %}
+    <td><a href={% url 'unidades-detail' maquina.pk %}>{{ maquina }}</a></td>
     {% endfor %}</p>
     <ul>
+
         {% if user.is_staff or user.pk == object.pk %}
         <button type="button" onclick="window.location.href='edit/'">Editar</button>
         <button type="button" onclick="window.location.href='delete/'">Borrar</button>

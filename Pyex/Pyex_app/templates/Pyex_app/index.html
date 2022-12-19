@@ -4,7 +4,9 @@
 {% if user.is_authenticated %}
 <h2>Muy buenas {{ user.username }}</h2>
 <p>Hace un buen día para hacer ejercicio. Dale caña monstro.</p>
-<p>¿No sabes qué hacer? Prueba a darle la pestaña 'Gimnasios' para ver todos los gimnasios que están esperando a que te unas o busca ya el tuyo con el Search de abajo. Entrena duro, mejora junto a Pyex.
+<p>¿No sabes qué hacer? Prueba a darle a 'Gimnasios' para ver todos los gimnasios que están esperando a que te unas.</p>
+<p>Si buscas un Gimnasio en conreto usa la barra de búsqueda de arriba</p>
+<a class="btn btn-primary btn-xl rounded-pill mt-5" style="padding: 9px;" href={% url 'gimnasio'%}>Gimnasios</a>
 <!--<form action="{% url 'search' %}" method="get">
   <input name="q" type="text" placeholder="Search...">
 </form>-->
@@ -15,7 +17,7 @@
                 <div class="container px-5">
                     <h1 class="masthead-heading mb-0">Gimnasios Pyex</h1>
                     <h2 class="masthead-subheading mb-0">El futuro de los gimnasios</h2>
-                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">¿Quieres saber más?</a>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href={% url 'gimnasio'%}>¡Conoce nuestros gimnasios!</a>
                 </div>
             </div>
             <div class="bg-circle-1 bg-circle"></div>

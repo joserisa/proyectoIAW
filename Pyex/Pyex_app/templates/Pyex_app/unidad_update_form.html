@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Modificar unidad.</h1>
-
+<h1>Actualiza el uso de {{ object }}</h1>
+Si vas a usar esta máquina ponle el check a la maquina, si ya terminaste, quítale el check!
 <form method="POST" class="update-form">{% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Modificar</button>
+    <button type="submit">Actualizar uso</button>
 </form>
 
 {% endblock %}

@@ -3,13 +3,12 @@
 {% block content %}
 <h1>{{ object.headline }}</h1>
 <p>{{ object.content }}</p>
-<p>Codigo: {{ object.pk }}</p>
-<p>Nombre: {{ object.nomUn }}</p>
-<p>Gimnasio propietaria de la maquina: {{ object.gimnasioUn }}</p>
-<p>Estado: {{ object.estadoUn }}</p>
+<p>Nombre de la máquina: {{ object.nomUn }}</p>
+<p>Del gimnasio: {{ object.gimnasioUn }}</p>
+<p>Estado: {% if object.estadoUn is True %} Ocupada {% else %} Libre {% endif %}</p>
 <ul>
+    <button type="button" onclick="window.location.href='edit/'">Modificar uso</button>
     {% if user.is_staff %}
-    <button type="button" onclick="window.location.href='edit/'">Editar</button>
     <button type="button" onclick="window.location.href='delete/'">Borrar</button>
     {% endif %}
 

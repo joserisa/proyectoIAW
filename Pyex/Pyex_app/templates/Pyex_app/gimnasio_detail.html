@@ -4,11 +4,10 @@
 <h1>{{ object.headline }}</h1>
 <p>{{ object.content }}</p>
 <p>Nombre del gimnasio: {{ object.nomGym }}</p>
-<p>Código del gimnasio: {{ object.pk }}</p>
 <p>Direccion del gimnasio: {{ object.direccionGym }}</p>
 <p>Telefono del gimnasio: {{ object.telefonoGym }}</p>
 <p>Correo del gimnasio: {{ object.correoGym }}</p>
-<p>Foto del gimnasio: <img src="/media/{{ object.fotoGym }}" alt="Foto de {{ object.nomGym }} ">  </p>
+<p>Foto del gimnasio: <img src="/media/{{ object.fotoGym }}" width="300" height="250" alt="Foto de {{ object.nomGym }} ">  </p>
 
 <ul>
     {% if user.is_staff %}
