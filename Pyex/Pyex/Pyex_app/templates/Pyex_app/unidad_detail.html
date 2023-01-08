@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ object.nomUn }}</h1>
+<p>Del gimnasio: {{ object.gimnasioUn }}</p>
+<p>Estado: {% if object.estadoUn is True %} Ocupada {% else %} Libre {% endif %}</p>
+<ul>
+    <button type="button" onclick="window.location.href='edit/'">Modificar uso</button>
+    {% if user.is_staff %}
+    <button type="button" onclick="window.location.href='delete/'">Borrar</button>
+    {% endif %}
+
+</ul>
+{% endblock %}

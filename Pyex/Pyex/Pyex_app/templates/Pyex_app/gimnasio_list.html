@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    <h2>Gimnasios</h2>
+    <ul>
+        {% for gimnasio in gimnasio_list %}
+            <li>
+                <a href={% url 'gimnasios-detail' gimnasio.pk %}>{{ gimnasio.nomGym }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% if user.is_staff %}
+<form action= {% url 'gimnasio-add' %}>
+  <input type="submit" value="Crear Gimnasio">
+</form>
+{% endif %}
+{% endblock %}
