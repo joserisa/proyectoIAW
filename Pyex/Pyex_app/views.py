@@ -4,12 +4,12 @@ from .forms import UserForm
 from typing import List
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from .models import Gimnasio, User, Curso, Unidad
+from .models import Gimnasio, User, Curso, Unidad, Maquina
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import NewUserForm
+from .forms import NewUserForm, Ocupacion,Desocupacion
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -63,6 +63,16 @@ class CursoListView(ListView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
+
+class MaquinaListView(ListView):
+    model = Maquina
+    queryset = Maquina.objects.all()
+    context_object_name = 'maquina_list'
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+
 class UnidadListView(ListView):
     model = Unidad
     queryset = Unidad.objects.all()
@@ -86,6 +96,7 @@ class GimnasioDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['gimnasio_list'] = Gimnasio.objects.all()
+        context['unidad_list'] = Unidad.objects.all()
         return context
 #    @method_decorator(login_required)
 #    def dispatch(self, *args, **kwargs):
@@ -113,10 +124,49 @@ class CursoDetailView(DetailView):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
+class MaquinaDetailView(DetailView):
+    model = Maquina
+    context_object_name = 'maquina'
+    queryset = Maquina.objects.all()
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+
 class UnidadDetailView(DetailView):
     model = Unidad
     context_object_name = 'unidad'
     queryset = Unidad.objects.all()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['estado']= Ocupacion(prefix="estado")
+        context['desocupar']= Desocupacion(prefix="desocupar")
+        return context
+
+    def post(self, request, *args, **kwargs):
+
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        if "estado" in request.POST:
+
+            form = Ocupacion(request.POST, prefix="estado")
+            if "estado-ocupar" in form.data:
+                pk=request.META["HTTP_REFERER"].split("/")[4]
+                unidad=Unidad.objects.get(pk=int(pk))
+                unidad.persona=request.user
+                unidad.save()
+        if "desocupar" in request.POST:
+
+            form = Desocupacion(request.POST, prefix="desocupar")
+            if "desocupar-desocupar" in form.data:
+                pk=request.META["HTTP_REFERER"].split("/")[4]
+                unidad=Unidad.objects.get(pk=int(pk))
+                unidad.persona_id = None
+                unidad.save()
+            #Unidad.persona = request.user.username
+        return self.render_to_response(context)
+
+
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
@@ -190,9 +240,38 @@ class CursoDeleteView(UserPassesTestMixin, DeleteView):
         except:
             return False
 #---------------------------------------------------------------------------------------------------
+class MaquinaCreateView(UserPassesTestMixin, CreateView):
+    model = Maquina
+    fields = ['nombreMa','DescMa']
+    success_url = reverse_lazy('maquina')
+    def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
+        try:
+            return self.request.user.is_superuser
+        except:
+            return False
+class MaquinaUpdateView(UpdateView):
+    model = Unidad
+    fields = ['nombreMa','DescMa']
+    success_url = reverse_lazy('maquina')
+    template_name = "./Pyex_app/maquina_update_form.html"
+#   def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
+#        try:
+#            return self.request.user.is_superuser
+#        except:
+#            return False
+class MaquinaDeleteView(UserPassesTestMixin, DeleteView):
+    model = Maquina
+    success_url = reverse_lazy('maquina')
+    def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
+        try:
+            return self.request.user.is_superuser
+        except:
+            return False
+#-----------------------------------------------------------------------------------------------------
+
 class UnidadCreateView(UserPassesTestMixin, CreateView):
     model = Unidad
-    fields = ['nomUn','estadoUn','gimnasioUn','aforoUn','aforoMaxUn']
+    fields = ['unidadUn','gimnasioUn','maquinaUn','persona']
     success_url = reverse_lazy('unidad')
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:
@@ -201,14 +280,10 @@ class UnidadCreateView(UserPassesTestMixin, CreateView):
             return False
 class UnidadUpdateView(UpdateView):
     model = Unidad
-    fields = ['estadoUn']
+    fields = ['unidadUn','gimnasioUn','maquinaUn','persona']
     success_url = reverse_lazy('unidad')
     template_name = "./Pyex_app/unidad_update_form.html"
-#   def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
-#        try:
-#            return self.request.user.is_superuser
-#        except:
-#            return False
+
 class UnidadDeleteView(UserPassesTestMixin, DeleteView):
     model = Unidad
     success_url = reverse_lazy('unidad')
@@ -225,7 +300,7 @@ class UserCreateView(CreateView):
 
 class UserUpdateView(UserPassesTestMixin, UpdateView):
     model = User
-    fields = ('username','first_name','last_name','email','sexUs','fechanacUs','telefonoUs','fotoUs','apuntados','ocupados')
+    fields = ('username','first_name','last_name','email','sexUs','fechanacUs','telefonoUs','fotoUs','apuntados')
     success_url = reverse_lazy('index')
     template_name = "./Pyex_app/user_update_form.html"
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)

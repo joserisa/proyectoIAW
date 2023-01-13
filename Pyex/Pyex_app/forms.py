@@ -23,3 +23,10 @@ class NewUserForm(UserCreationForm):
 			user.save()
 		return user
 
+class Ocupacion(forms.Form):
+
+	ocupar = forms.BooleanField(required=False)
+
+class Desocupacion(forms.Form):
+
+	desocupar = forms.BooleanField(required=False)

@@ -9,6 +9,7 @@ from Pyex_app.models import *
 admin.site.register(User)
 admin.site.register(Gimnasio)
 admin.site.register(Curso)
+admin.site.register(Maquina)
 admin.site.register(Unidad)
 #admin.site.register(Apuntado)
 #admin.site.register(Alta)

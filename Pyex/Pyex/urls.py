@@ -37,14 +37,14 @@ urlpatterns = [
     path('curso/', CursoListView.as_view(), name='curso'),
     path('usuario/', UserListView.as_view(), name='usuario'),
     path('unidad/', UnidadListView.as_view(), name='unidad'),
-
+    path('maquina/', MaquinaListView.as_view(), name='maquina'),
 
     #VISTAS DE DETALLES
     path('gimnasio/<int:pk>/', GimnasioDetailView.as_view(), name='gimnasios-detail'),
     path('usuario/<int:pk>/', UserDetailView.as_view(), name='usuarios-detail'),
     path('curso/<int:pk>/', CursoDetailView.as_view(), name='cursos-detail'),
     path('unidad/<int:pk>/', UnidadDetailView.as_view(), name='unidades-detail'),
-    
+    path('maquina/<int:pk>/', MaquinaDetailView.as_view(), name='maquinas-detail'),
 
     #VISTAS AÑADIR, MODIFICAR Y BORRAR GIMNASIO
     path('gimnasio/add/', GimnasioCreateView.as_view(), name='gimnasio-add'),
@@ -55,6 +55,11 @@ urlpatterns = [
     path('curso/add/', CursoCreateView.as_view(), name='curso-add'),
     path('curso/<int:pk>/edit/', CursoUpdateView.as_view(), name='curso-update'),
     path('curso/<int:pk>/delete/', CursoDeleteView.as_view(), name='curso-delete'),
+
+    #VISTAS AÑADIR, MODIFICAR Y BORRAR MAQUINA
+    path('maquina/add/', MaquinaCreateView.as_view(), name='maquina-add'),
+    path('maquina/<int:pk>/edit/', MaquinaUpdateView.as_view(), name='maquina-update'),
+    path('maquina/<int:pk>/delete/', MaquinaDeleteView.as_view(), name='maquina-delete'),
 
     #VISTAS AÑADIR, MODIFICAR Y BORRAR CURSO
     path('unidad/add/', UnidadCreateView.as_view(), name='unidad-add'),

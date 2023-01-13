@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ object.nombreMa }}</h1>
+<p>Descripcion: {{ object.DescMa }}</p>
+    {% if user.is_staff %}
+    <button type="button" onclick="window.location.href='edit/'">Editar</button>
+    <button type="button" onclick="window.location.href='delete/'">Borrar</button>
+    {% endif %}
+
+</ul>
+{% endblock %}

@@ -1,13 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{ object.headline }}</h1>
-<p>{{ object.content }}</p>
-<p>Nombre del gimnasio: {{ object.nomGym }}</p>
-<p>Direccion del gimnasio: {{ object.direccionGym }}</p>
-<p>Telefono del gimnasio: {{ object.telefonoGym }}</p>
-<p>Correo del gimnasio: {{ object.correoGym }}</p>
-<p>Foto del gimnasio: <img src="/media/{{ object.fotoGym }}" width="300" height="250" alt="Foto de {{ object.nomGym }} ">  </p>
+
+<h2>{{ object.nomGym }}</h2>
+<p>Dirección: {{ object.direccionGym }}</p>
+<h3>Contacto</h3>
+<p>{{ object.telefonoGym }} {{ object.correoGym }}</p>
+<p>Foto del gimnasio</p> 
+<p><img src="/media/{{ object.fotoGym }}" width="300" height="250" alt="Foto de {{ object.nomGym }} ">  </p>
+<h3>Lista de máquinas</h3>
+
+{% for maquina in unidad_list %}
+
+{% if maquina.gimnasioUn.pk == gimnasio.pk %}
+{% if not maquina.persona %}
+<li style="color:#10db10"><a href={% url 'unidades-detail' maquina.pk %}>{{ maquina.maquinaUn }}</a></li>
+
+{% else %}
+<li style="color:#C70039"><a href={% url 'unidades-detail' maquina.pk %}>{{ maquina.maquinaUn }}</a></li>
+
+{% endif %}
+
+{% endif %}
+
+{% endfor %}
 
 <ul>
     {% if user.is_staff %}

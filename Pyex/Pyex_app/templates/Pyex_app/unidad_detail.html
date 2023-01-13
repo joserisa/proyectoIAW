@@ -1,15 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{ object.headline }}</h1>
-<p>{{ object.content }}</p>
-<p>Nombre de la máquina: {{ object.nomUn }}</p>
+<h1>{{ object.unidadUn }}</h1>
 <p>Del gimnasio: {{ object.gimnasioUn }}</p>
-<p>Estado: {% if object.estadoUn is True %} Ocupada {% else %} Libre {% endif %}</p>
-<ul>
-    <button type="button" onclick="window.location.href='edit/'">Modificar uso</button>
+<p>Es del tipo: {{ object.maquinaUn }}</p>
+
+{% if object.persona == null %}
+
+<p>Máquina libre</p> 
+<!-- <p><a class="btn btn-primary btn-xl rounded-pill mt-5" href='edit/'>Ocupar</a></p> -->
+    <form method="post" action="" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{estado}}
+	<input type="submit" name="{{estado.prefix}}" value="Submit">
+    </form>
+{% else %}
+
+{% if user.pk == object.persona.pk %}
+
+<!-- <a class="btn btn-primary btn-xl rounded-pill mt-5" href='edit/'>Desocupar</a> -->
+<form method="post" action="" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{desocupar}}
+	<input type="submit" name="{{desocupar.prefix}}" value="Submit">
+    </form>
+{% else %}
+
+Maquina ocupada por {{ object.persona }} 
+
+{% endif %}
+
+{% endif %}
+
+
     {% if user.is_staff %}
-    <button type="button" onclick="window.location.href='delete/'">Borrar</button>
+ <p><a class="btn btn-primary btn-xl rounded-pill mt-5" href='edit/'>Editar</a>
+    <a class="btn btn-primary btn-xl rounded-pill mt-5" href='delete/'>Borrar</a></p>
     {% endif %}
 
 </ul>

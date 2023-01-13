@@ -1,0 +1,17 @@
+                                       {% extends 'base.html' %}
+
+{% block content %}
+<h2>Lista de máquina</h2>
+    <ul>
+        {% for maquina in maquina_list %}
+            <li>
+                <a href={% url 'maquinas-detail' maquina.pk %}>{{ maquina.nombreMa }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% if user.is_staff %}
+    <form action= {% url 'maquina-add' %}>
+        <input type="submit" value="Crear maquina">
+      </form>
+{% endif %}
+      {% endblock %}
