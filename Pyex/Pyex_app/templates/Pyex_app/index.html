@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
 {% if user.is_authenticated %}
+<section>
+    <div class="elconte">
 <h2>Muy buenas {{ user.username }}</h2>
 <p>Hace un buen día para hacer ejercicio. Dale caña monstro.</p>
 <p>¿No sabes qué hacer? Prueba a darle a 'Gimnasios' para ver todos los gimnasios que están esperando a que te unas.</p>
 <p>Si buscas un Gimnasio en conreto usa la barra de búsqueda de arriba</p>
+
 <a class="btn btn-primary btn-xl rounded-pill mt-5" style="padding: 9px;" href={% url 'gimnasio'%}>Gimnasios</a>
+</div>
+</section>
+
 <!--<form action="{% url 'search' %}" method="get">
   <input name="q" type="text" placeholder="Search...">
 </form>-->
@@ -51,7 +58,7 @@
                     <div class="col-lg-6">
                         <div class="p-5">
                             <h2 class="display-4">Un QR de identificación.</h2>
-                            <p>El código QR te permitirá acceder a cualquier gimnasio Pyex y acceder a las máquinas. Puedes mostrar tu código QR a través de tu dispositivo móvil.</p>
+                            <p>El código QR te permitirá acceder a cualquier gimnasio Pyex.</p>
                         </div>
                     </div>
                 </div>
@@ -67,14 +74,12 @@
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
                             <h2 class="display-4">Una aplicación con la que hacer todo.</h2>
-                            <p>La aplicación no solo te permite darte de alta o de baja en el gimnasio sin tener que ir de forma presencial, también te permite ver qué máqinas están libres a tan solo un vistazo en tu teléfono. También podrás apuntarte a los diferentes cursos que se imparten en cada uno de nuestros gimnasios. Ten control absoluto sobre tu ejercicio.</p>
+                            <p>La aplicación no solo te permite darte de alta o de baja en el gimnasio sin tener que ir de forma presencial, también te permite ver qué máqinas están libres a tan solo un vistazo en tu teléfono u ocuparlas. También podrás apuntarte a los diferentes cursos que se imparten en cada uno de nuestros gimnasios. Ten control absoluto sobre tu ejercicio.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    </body>
-</html>
 
 {% endif %}
 {% endblock%}

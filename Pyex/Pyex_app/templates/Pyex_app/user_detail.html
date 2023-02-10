@@ -1,24 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Bienvenid@ a tu perfil {{ object.username }}</h1>
-<p>Nombre: {{ object.first_name }}</p>
-<p>Apellido: {{ object.last_name }}</p>
-<p>Fecha nacimiento: {{ object.fechanacUs }}</p>
-<p>Telefono: {{ object.telefonoUs }}</p>
-<p>Correo: {{ object.email }}</p>
-<p>Sexo: {{ object.sexUs }}</p>
-<p>Pago: {% if object.PagoUs is True %} Al corriente de pago {% else %} Moroso {% endif %}</p>
-<p>Foto: <img src="/media/{{ object.fotoUs }}" width="300" height="250" alt="Foto del usuario {{ object.username }}"></p>
-<p>Tarjeta: <img src="/media/{{ object.tarjetaUs }}" alt="Foto tarjeta de {{ object.username }}"></p>
-<p>Actualmente estás apuntado a:
+<div class="elconte">
+    <h1>Bienvenid@ a tu perfil {{ object.username }}</h1>
+   <img src="/media/{{ object.fotoUs }}" width="300" height="250" alt="Foto del usuario {{ object.username }}">
+    <h3>Tarjeta QR</h3> <img src="/media/{{ object.tarjetaUs }}" width="300" height="250" alt="Foto tarjeta de {{ object.username }}">
+        <h3>Nombre</h3> 
+        <h4>{{ object.first_name }} {{ object.last_name }}</h4>
+        <h3>Fecha nacimiento</h3> 
+        <h4>{{ object.fechanacUs }}</h4>
+        <h3>Contacto</h3> 
+        <h4>{{ object.telefonoUs }} {{ object.email }}</h4>
+        <h3>Sexo</h3> 
+        <h4>{{ object.sexUs }}</h4>
+        <h3>Pago</h3> 
+        <h4>{% if object.PagoUs is True %} Gimnasio accesible {% else %} Sin acceso al gimnasio {% endif %}</h4>
+
+
+
+
+
+<!--
+<h3>Cursos a los que estás apuntado</h3>
     {% for curso in object.apuntados.all %}
     <td><a href={% url 'cursos-detail' curso.pk %}>{{ curso }}</a> </td>
     {% endfor %}</p>
-        {% if user.is_staff or user.pk == object.pk %}
-        <a class="btn btn-primary btn-xl rounded-pill mt-5" href='edit/'>Editar</a>
-        <a class="btn btn-primary btn-xl rounded-pill mt-5" href='delete/'>Borrar</a>
-        {% endif %}
-    
-    </ul>
+-->
+    <h3>Máquina ocupada actualmente</h3>
+    {% for unidad in unidad_list %}
+    {% if unidad.persona.pk == request.user.pk %}
+    <td><a href={% url 'unidades-detail' unidad.pk %}>{{ unidad.maquinaUn }}</a> </td>
+    {% endif %}
+    {% endfor %}
+    {% if user.is_staff or user.pk == object.pk %}
+    <p><a class="btn btn-primary btn-xl rounded-pill mt-5" href='edit/'>Editar</a>
+    <a class="btn btn-primary btn-xl rounded-pill mt-5" href='delete/'>Borrar</a></p>
+    {% endif %}
+</div>
+
     {% endblock %}

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-
+<div class="elconte">
     <h2>Gimnasios</h2>
+    <h4>Estos son los gimnasios que tenemos actualmente abiertos, ¡echa un vistazo a sus equipamientos!</h4>
     <ul>
         {% for gimnasio in gimnasio_list %}
             <li>
@@ -16,4 +16,7 @@
   <input type="submit" value="Crear Gimnasio">
 </form>
 {% endif %}
+</div>
 {% endblock %}
+
+

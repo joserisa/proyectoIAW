@@ -23,12 +23,22 @@ from django.conf import settings
 from rest_framework import routers, serializers, viewsets
 from Pyex_app.api import router
 
+from wagtail.admin import urls as wagtailadmin_urls
+from wagtail import urls as wagtail_urls
+from wagtail.documents import urls as wagtaildocs_urls
+
 urlpatterns = [
     #path('alta/', AltaListView.as_view()),
     #path('apuntado/', ApuntadoListView.as_view()),
     #path('polls/', include('polls.urls')),
     #path('apuntado/<int:pk>/', ApuntadoDetailView.as_view(), name='apuntado-detail'),
     #path('alta/<int:pk>/', AltaDetailView.as_view(), name='alta-detail'),
+    #path('cms/', include(wagtailadmin_urls)),
+    #path('documents/', include(wagtaildocs_urls)),
+    #path('pages/', include(wagtail_urls)),
+    
+    path('cms/', include(wagtailadmin_urls)),
+    path('blog/', include(wagtail_urls)),
 
     path('', index, name='index'),
     

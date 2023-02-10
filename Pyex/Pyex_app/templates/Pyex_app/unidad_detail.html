@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="elconte">
 <h1>{{ object.unidadUn }}</h1>
 <p>Del gimnasio: {{ object.gimnasioUn }}</p>
 <p>Es del tipo: {{ object.maquinaUn }}</p>
@@ -39,4 +40,5 @@ Maquina ocupada por {{ object.persona }}
     {% endif %}
 
 </ul>
+</div>
 {% endblock %}

@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block title %}Login{% endblock %}
 {% block content %}
+<div class="elconte">
 <h2>Página de inicio de sesión.</h2>
 Inicia sesión introduciendo nombre de usuario y contraseña.
 <form method="post">
   {% csrf_token %}
-  {{ form.as_p }}
+  {{ form|crispy }}
   <button type="submit">Iniciar sesión</button>
 </form>
+</div>
 {% endblock %}

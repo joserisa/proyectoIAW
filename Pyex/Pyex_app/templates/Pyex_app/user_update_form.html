@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
+<div class="elconte">
 <h1>Modifica tus datos.</h1>
 
 <form enctype="multipart/form-data" method="post">{% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <button type="submit">Modificar</button>
 </form>
+</div>
 {% endblock %}

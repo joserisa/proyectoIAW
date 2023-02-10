@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="elconte">
 <h1>Borrar unidad de ejercicio</h1>
 
 <form method="POST" class="delete-form">{% csrf_token %}
@@ -8,4 +9,5 @@
     <button type="submit">Eliminar</button>
     <button type="button" onclick="window.location.href='/unidad'">No</button>
 </form>
+</div>
 {% endblock %}

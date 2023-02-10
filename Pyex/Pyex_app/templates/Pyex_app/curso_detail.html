@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{ object.headline }}</h1>
-<p>{{ object.content }}</p>
-<p>Nombre: {{ object.nomCur }}</p>
-<p>Profesor: {{ object.profesorCur }}</p>
-<p>Horario: {{ object.horarioIniCur }}-{{ object.horarioFinCur }}</p>
-<p>Grupo: {{ object.grupoCur }}</p>
-<p>Gimnasio que imparte el curso: {{ object.gimnasioCur }}</p>
-<p>Descripcion: {{ object.descCur }}</p>
-<p>Capacidad: {{ object.capCur }}/{{ object.capMaxCur }}</p>
+<div class="elconte">
+<h1>{{ object.nomCur }}</h1>
+<h3>Profesor del curso</h3>
+<h4>{{ object.profesorCur }}</h4>
+<h3>Capacidad</h3> 
+<h4>{{ object.capMaxCur }}</h4>
+<h3>Horario</h3> 
+<h4>{{ object.horarioIniCur }}-{{ object.horarioFinCur }}</h4>
+<h3>Grupo</h3> 
+<h4>{{ object.grupoCur }}</h4>
+<h3>Descripcion</h3> 
+<h5>{{ object.descCur }}</h5>
+
 <ul>
     {% if user.is_staff %}
     <button type="button" onclick="window.location.href='edit/'">Editar</button>
@@ -17,5 +21,5 @@
     {% endif %}
 
 </ul>
-
+</div>
 {% endblock %}

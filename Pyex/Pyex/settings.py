@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+import ldap
+from django_auth_ldap.config import LDAPSearch
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,6 +34,22 @@ CSRF_TRUSTED_ORIGINS = ['https://pyex.duckdns.org']
 # Application definition
 
 INSTALLED_APPS = [
+    'blog_Pyex.apps.BlogPyexConfig',
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail',
+
+    'modelcluster',
+    'taggit',
+    'crispy_forms',
     'Pyex_app.apps.Pyex_appConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,8 +60,9 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
 ]
-
+CRISPY_TEMPLATE_PACK= 'bootstrap4'
 MIDDLEWARE = [
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -72,30 +91,24 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Pyex.wsgi.application'
+WAGTAIL_SITE_NAME = 'Wagtail Pyex'
+WAGTAILADMIN_BASE_URL = 'https://pyex.duckdns.org/admincms'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'OPTIONS': {
-            'service': 'pyex',
-            'passfile': '.my_pgpass',
-        },
+    #    'ENGINE': 'django.db.backends.postgresql',
+    #    'OPTIONS': {
+    #        'service': 'pyex',
+    #        'passfile': '.my_pgpass',
+    #    },
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'pyex',
+    'USER': 'postgres',
+    'PASSWORD': '1234',
+    'HOST': 'pyex-database.c4wcqevmn3qh.us-east-1.rds.amazonaws.com',
+    'PORT': '',
     }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -112,26 +125,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
 STATIC_URL = 'static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -154,3 +153,25 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
+
+## LDAP
+#LDAP CONFIG
+AUTHENTICATION_BACKENDS = [
+    "django_auth_ldap.backend.LDAPBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
+AUTH_LDAP_SERVER_URI = "ldap://localhost:1389"
+AUTH_LDAP_BIND_DN = "cn=admin,dc=example,dc=org"
+AUTH_LDAP_BIND_PASSWORD = "adminpassword"
+AUTH_LDAP_USER_SEARCH = LDAPSearch(
+    "ou=users,dc=example,dc=org", ldap.SCOPE_SUBTREE, "(uid=%(user)s)"
+)
+
+
+AUTH_LDAP_USER_ATTR_MAP = {
+    "email": "mail",
+}
+
+WAGTAILUSERS_PASSWORD_ENABLED = False
+WAGTAIL_PASSWORD_MANAGEMENT_ENABLED = False
+WAGTAIL_PASSWORD_RESET_ENABLED = False

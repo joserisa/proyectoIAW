@@ -97,6 +97,7 @@ class GimnasioDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['gimnasio_list'] = Gimnasio.objects.all()
         context['unidad_list'] = Unidad.objects.all()
+        context['curso_list'] = Curso.objects.all()
         return context
 #    @method_decorator(login_required)
 #    def dispatch(self, *args, **kwargs):
@@ -104,6 +105,10 @@ class GimnasioDetailView(DetailView):
 class UserDetailView(UserPassesTestMixin,DetailView):
     model = User
     context_object_name = 'usuario'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['unidad_list'] = Unidad.objects.all()
+        return context
     queryset = User.objects.all()
     def test_func(self): #COMPROBAR SI ES EL USUARIO (ERROR 403: FORBIDDEN)
         try:
