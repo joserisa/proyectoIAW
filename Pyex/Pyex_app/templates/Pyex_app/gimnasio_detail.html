@@ -4,14 +4,14 @@
 <div class="elconte">
 <h2>{{ object.nomGym }}</h2>
 <img src="/media/{{ object.fotoGym }}" width="270" height="160" alt="Foto de {{ object.nomGym }} ">
-<div class="der">
+
 <h2>Dirección</h2>
 <h4>{{ object.direccionGym }}</h4>
 <h2>Contacto</h2>
 <h4>{{ object.telefonoGym }} {{ object.correoGym }}</h4>
-</div>
-</div>
-<div class="elconte">
+
+
+
 <h3>Cursos que imparte el gimnasio</h3>
 
 {% for curso in curso_list %}
@@ -26,6 +26,7 @@
 <td>
 {% if maquina.gimnasioUn.pk == gimnasio.pk %}
 {% if not maquina.persona %}
+
 <li style="color:#10db10"><a href={% url 'unidades-detail' maquina.pk %}>{{ maquina.maquinaUn }}</a></li>
 
 {% else %}
@@ -44,5 +45,6 @@
     {% endif %}
 
 </ul>
+</div>
 </div>
 {% endblock %}

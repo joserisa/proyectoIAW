@@ -10,7 +10,10 @@
 	<form method="POST">
 		{% csrf_token %}
 		{{ register_form|crispy }}                    
-		<button class="btn btn-primary" type="submit">Registrarse</button>
+		<button class="btn btn-primary" class="g-recaptcha" 
+		data-sitekey="6Lc0z64kAAAAAAjDORh1Hdv_HwX14TVAxLK-wtiO" 
+		data-callback='onSubmit' 
+		data-action='submit'>Registrarse</button>
 	</form>
 	<p class="text-center">Si ya tienes una cuenta, <a href="/">Inicia sesión</a></p>
 </div>

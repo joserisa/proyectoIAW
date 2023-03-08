@@ -7,13 +7,36 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Gimnasio, User, Curso, Unidad, Maquina
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from .forms import NewUserForm, Ocupacion,Desocupacion
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
+from django.conf import settings
+from django.core.mail import send_mail
+
+"""def signup(request):
+    if request.method=="POST":
+        username=request.POST["username"]
+        password = request.POST["password"]
+        email = request.POST["email"]
+
+        user = User.objects.create_user(
+            username = username,
+            password = password,
+            email = email
+        )
+        login(request,user)
+        subject='Bienvenido a Pyex'
+        message=f'Buenas {user.username}, gracias por tu registro en Pyex, te hemos añadido al grupo Bloggers.'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [user.mail,]
+        send_mail(subject,message, email_from, recipient_list)
+        return redirect("/index")
+    return render(request, "signup.html")"""
+
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 #Alta, Apuntado

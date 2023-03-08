@@ -175,3 +175,6 @@ AUTH_LDAP_USER_ATTR_MAP = {
 WAGTAILUSERS_PASSWORD_ENABLED = False
 WAGTAIL_PASSWORD_MANAGEMENT_ENABLED = False
 WAGTAIL_PASSWORD_RESET_ENABLED = False
+# CORREO
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = '/home/ubuntu/app-messages' # change this to a proper location

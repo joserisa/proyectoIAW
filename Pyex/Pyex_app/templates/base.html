@@ -4,15 +4,17 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
+        <meta name="description" 
+                content="Tenemos un menú por el que podremos navegar para ir a nuestro
+                            blog, ver la lista de gimnasios, ver tu perfil de usuario, cerrar sesión...
+                            En cada pestaña podrás encontrar información concreta de lo que sea." />
         <meta name="author" content="" />
         <title>Gimnasios Pyex - Start Bootstrap Template</title>
         <link rel="icon" href="{% static 'favicon.ico' %}" />
         <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!--<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>-->
+        
         <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
@@ -27,20 +29,20 @@
                     <ul class="navbar-nav ms-auto">
                         {% if user.is_authenticated %}
 			<!--<li class="nav-item"><a class="nav-link" <form action="{% url 'search' %}" method="get"> <input name="q" type="text" placeholder="Busca gimnasios..."></form></a></li>-->
-			<li class="nav-item"><a class="nav-link" href={% url 'gimnasio' %}>Gimnasios</a></li>
+			<li class="nav-item"><a style="color:#ffffff" class="nav-link" href={% url 'gimnasio' %}>Gimnasios</a></li>
                    <!--     <li class="nav-item"><a class="nav-link" href={% url 'unidad' %}>Unidades de ejercicio</a></li>-->
 			<!--<li class="nav-item"><a class="nav-link" href={% url 'maquina' %}>Maquinas</a></li>-->
             <!--            <li class="nav-item"><a class="nav-link" href={% url 'curso' %}>Cursos</a></li>-->
-			<li class="nav-item"><a class="nav-link" href={% url 'usuarios-detail' user.id %}>{{ user.username }}</a></li>
-            <li class="nav-item"><a class="nav-link" href='/blog'>Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href={% url 'logout' %}>Cerrar sesión</a></li>
+			<li class="nav-item"><a style="color:#ffffff" class="nav-link" href={% url 'usuarios-detail' user.id %}>{{ user.username }}</a></li>
+            <li class="nav-item"><a style="color:#ffffff" class="nav-link" href='/blog'>Blog</a></li>
+                        <li class="nav-item"><a style="color:#ffffff" class="nav-link" href={% url 'logout' %}>Cerrar sesión</a></li>
    <form action="{% url 'search' %}" method="get">
       <input name="q" type="search" placeholder="Busca gimnasios..." aria-label="Search">
       <button class="btn btn-primary btn-xl rounded-pill mt-2 " style="padding: 5px;" type="submit">Buscar</button>
     </form>
                         {% else %}
-                        <li class="nav-item"><a class="nav-link" href={% url 'usuario-add' %}>Registrarse</a></li>
-                        <li class="nav-item"><a class="nav-link" href={% url 'login' %}>Iniciar sesión</a></li>
+                        <li  class="nav-item"><a style="color:#ffffff" class="nav-link" href={% url 'usuario-add' %}>Registrarse</a></li>
+                        <li  class="nav-item"><a style="color:#ffffff" class="nav-link" href={% url 'login' %}>Iniciar sesión</a></li>
                         {% endif %}
                     </ul>
                 </div>

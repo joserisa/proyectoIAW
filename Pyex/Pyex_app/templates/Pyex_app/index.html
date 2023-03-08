@@ -3,6 +3,9 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+<meta
+  name="description"
+  content="Podrás encontrar los enlaces para moverte por la pagína e información dando un saludo.">
 <section>
     <div class="elconte">
 <h2>Muy buenas {{ user.username }}</h2>
@@ -37,7 +40,7 @@
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6 order-lg-2">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'assets/img/gymsis.jpg' %}" alt="..." /></div>
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'assets/img/gymsis.webp' %}" width="400" height="300" alt="..." /></div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
@@ -53,7 +56,7 @@
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'assets/img/qr.jpg' %}" alt="..." /></div>
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'assets/img/qr.webp' %}" width="400" height="300" alt="..." /></div>
                     </div>
                     <div class="col-lg-6">
                         <div class="p-5">
@@ -69,7 +72,7 @@
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6 order-lg-2">
-                        <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'assets/img/movil.png' %}" alt="..." /></div>
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'assets/img/movil.webp' %}" width="400" height="300" alt="..." /></div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
