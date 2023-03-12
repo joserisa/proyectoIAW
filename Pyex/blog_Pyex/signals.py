@@ -18,7 +18,7 @@ def log_user_loggin(sender, user, **kwargs):
             u.groups.add(g)
             send_mail(
                 'Grupo Bloggers',
-                'Hola {u.username}. Te hemos añadido al grupo Bloggers, ahora puedes subir tus publicaciones, saludos.',
+                f'Hola {u.username}. Te hemos añadido al grupo Bloggers, ahora puedes subir tus publicaciones, saludos.',
                 'xemoso93@gmail.com',
                 [c],
                 fail_silently=False,
